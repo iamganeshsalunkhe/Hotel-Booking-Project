@@ -2,8 +2,9 @@
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(200),
+    email VARCHAR(100),
     password VARCHAR(200),
-    role ENUM('admin', 'customer'),
+    role ENUM('Admin', 'Customer'),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
 );
 
@@ -28,6 +29,8 @@ CREATE TABLE property (
     locations_id INT,
     name VARCHAR(255),
     address VARCHAR(255),
+    room_type VARCHAR(100),
+    price int,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (locations_id) REFERENCES locations(locations_id)
 );
