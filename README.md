@@ -41,6 +41,7 @@ This is a full-stack hotel booking application built from scratch. The applicati
 CREATE TABLE users (
     user_id INT PRIMARY KEY AUTO_INCREMENT,
     username VARCHAR(200),
+    email varchar (100),
     password VARCHAR(200),
     role ENUM('admin', 'customer'),
     created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP
@@ -67,6 +68,8 @@ CREATE TABLE property (
     locations_id INT,
     name VARCHAR(255),
     address VARCHAR(255),
+    room_type varchar(100),
+    price int,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (locations_id) REFERENCES locations(locations_id)
 );
