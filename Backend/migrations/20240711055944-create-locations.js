@@ -12,14 +12,7 @@ module.exports = {
       name: {
         type: Sequelize.ENUM('Mumbai', 'Pune', 'Hyderabad')
       },
-      createdAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      },
-      updatedAt: {
-        allowNull: false,
-        type: Sequelize.DATE
-      }
+      
     });
   },
   async down(queryInterface, Sequelize) {

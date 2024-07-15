@@ -22,7 +22,6 @@ module.exports = (sequelize, DataTypes) => {
     toJSON() {
       return {
         ...this.get(),
-        userId: undefined,
         password: undefined,
         createdAt: undefined,
         updatedAt: undefined,

@@ -15,6 +15,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       tableName: "property_amenities",
       modelName: "PropertyAmenities",
+      timestamps:false
     }
   );
 
