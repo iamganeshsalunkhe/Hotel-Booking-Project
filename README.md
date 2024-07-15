@@ -17,6 +17,7 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - Sequelize (ORM for MySQL)
 - MySQL
 - bcrypt (for password hashing)
+- JWT
 
 ### Frontend
 - React.js
