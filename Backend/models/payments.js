@@ -1,34 +1,43 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  class payments extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Payments extends Model {
     static associate(models) {
-      // define association here
-    payments.belongsTo(models.user,{foreignKey:'userId'});
-    payments.belongsTo(models.bookings,{foreignKey:'bookingId'})
+      Payments.belongsTo(models.Users, {
+        foreignKey: "userId",
+        as: "user",
+      });
+
+      Payments.belongsTo(models.Bookings, {
+        foreignKey: "bookingsId",
+        as: "booking",
+      });
     }
   }
-  payments.init({
-    paymentsId:{
-      type:DataTypes.INTEGER,
-      autoIncrement:true,
-      primaryKey:true
+
+  Payments.init(
+    {
+      paymentsId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      userId: DataTypes.INTEGER,
+      bookingsId: DataTypes.INTEGER,
+      amount: DataTypes.INTEGER,
+      paymentDate: {
+        type: DataTypes.DATE,
+        defaultValue: DataTypes.NOW,
+        field: "payment_date",
+      },
     },
-    userId: DataTypes.INTEGER,
-    bookingsId: DataTypes.INTEGER,
-    amount: DataTypes.INTEGER,
-    paymentDate: DataTypes.DATE
-  }, {
-    sequelize,
-    tableName:'payments',
-    modelName: 'payments',
-  });
-  return payments;
+    {
+      sequelize,
+      tableName: "payments",
+      modelName: "Payments",
+    }
+  );
+
+  return Payments;
 };

@@ -1,41 +1,53 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
-module.exports = (sequelize, DataTypes) => {
-  class bookings extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
-    static associate(models) {
-      // define association here
-      bookings.belongsTo(models.user,{foreignKey:'userId'});
-      bookings.belongsTo(models.property,{foreignKey:'propertyId'});
+"use strict";
+const { Model } = require("sequelize");
 
-      bookings.belongsToMany(models.amenities,{
-        through:models.bookingamenities,
-        foreignKey:'bookingsId'
-        });
+module.exports = (sequelize, DataTypes) => {
+  class Bookings extends Model {
+    static associate(models) {
+      Bookings.belongsTo(models.Users, {
+        foreignKey: "userId",
+        as: "user",
+      });
+
+      Bookings.belongsTo(models.Property, {
+        foreignKey: "propertyId",
+        as: "property",
+      });
+
+      Bookings.belongsToMany(models.Amenities, {
+        through: models.BookingAmenities,
+        foreignKey: "bookingsId",
+        otherKey: "amenitiesId",
+        as: "amenities",
+      });
+
+      Bookings.hasMany(models.Payments, {
+        foreignKey: "bookingsId",
+        as: "payments",
+      });
     }
   }
-  bookings.init({
-    bookingsId:{
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+
+  Bookings.init(
+    {
+      bookingsId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      userId: DataTypes.INTEGER,
+      propertyId: DataTypes.INTEGER,
+      checkInDate: DataTypes.DATE,
+      checkOutDate: DataTypes.DATE,
+      status: DataTypes.ENUM("Confirmed", "Cancelled"),
+      numberOfGuests: DataTypes.INTEGER,
     },
-    userId: DataTypes.INTEGER,
-    propertyId: DataTypes.INTEGER,
-    checkInDate: DataTypes.DATE,
-    checkOutDate: DataTypes.DATE,
-    status: DataTypes.ENUM('Confirmed', 'Cancelled'),
-    numberOfGuests: DataTypes.INTEGER
-  }, {
-    sequelize,
-    tableName:'bookings',
-    modelName: 'bookings',
-  });
-  return bookings;
+    {
+      sequelize,
+      tableName: "bookings",
+      modelName: "Bookings",
+    }
+  );
+
+  return Bookings;
 };
