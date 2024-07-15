@@ -1,39 +1,45 @@
-'use strict';
-const {
-  Model
-} = require('sequelize');
+"use strict";
+const { Model } = require("sequelize");
+
 module.exports = (sequelize, DataTypes) => {
-  class amenities extends Model {
-    /**
-     * Helper method for defining associations.
-     * This method is not a part of Sequelize lifecycle.
-     * The `models/index` file will call this method automatically.
-     */
+  class Amenities extends Model {
     static associate(models) {
-      // define association here
-      amenities.belongsToMany(models.property,{
-        through:models.propertyamenities,
-        foreignKey:'amenitiesId'
+      // many-to-many association with Property
+      Amenities.belongsToMany(models.Property, {
+        through: models.PropertyAmenities,
+        foreignKey: "amenitiesId",
+        otherKey: "propertyId",
+        as: "properties",
       });
-      amenities.belongsToMany(models.bookings,{
-        through:models.bookingamenities,
-        foreignKey:'amenitiesId'
-      })
+
+      // many-to-many association with Bookings
+      Amenities.belongsToMany(models.Bookings, {
+        through: models.BookingAmenities,
+        foreignKey: "amenitiesId",
+        otherKey: "bookingsId",
+        as: "bookings",
+      });
     }
   }
-  amenities.init({
-    amenitiesId:{
-      type:DataTypes.INTEGER,
-      primaryKey:true,
-      autoIncrement:true
+
+  Amenities.init(
+    {
+      amenitiesId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        autoIncrement: true,
+      },
+      name: DataTypes.STRING,
+      description: DataTypes.STRING,
+      price: DataTypes.INTEGER,
     },
-    name: DataTypes.STRING,
-    description: DataTypes.STRING,
-    price: DataTypes.INTEGER
-  }, {
-    sequelize,
-    tableName:'amenities',
-    modelName: 'amenities',
-  });
-  return amenities;
+    {
+      sequelize,
+      tableName: "amenities",
+      modelName: "Amenities",
+      timestamps:false
+    }
+  );
+
+  return Amenities;
 };
