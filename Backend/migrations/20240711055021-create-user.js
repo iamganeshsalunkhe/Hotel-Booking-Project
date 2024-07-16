@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable("Users", {
-      id: {
+      userId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -25,14 +25,14 @@ module.exports = {
         type: Sequelize.ENUM("admin", "customer"),
         allowNull: false,
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
         defaultValue:Sequelize.NOW
       },
-      updatedAt: {
-        defaultValue:Sequelize.NOW,
-        type: Sequelize.DATE,
-      },
+      updatedAt : {
+        type:Sequelize.DATE,
+        defaultValue:Sequelize.NOW
+      }
     });
   },
   async down(queryInterface, Sequelize) {

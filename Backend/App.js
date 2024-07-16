@@ -10,6 +10,13 @@ const PORT = process.env.PORT || 4000;
 const app = express();
 app.use(express.json());
 
+// importing routes
+const authRoutes = require('./routes/auth');
+
+// using routes
+app.use('/auth',authRoutes);
+
+
 // Listening
 app.listen(PORT, "localhost", () => {
   console.log(`Server listening on PORT ${PORT}`);
