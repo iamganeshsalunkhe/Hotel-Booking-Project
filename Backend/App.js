@@ -11,10 +11,12 @@ const app = express();
 app.use(express.json());
 
 // importing routes
-const authRoutes = require('./routes/auth');
+const authRoute = require('./routes/auth');
+const homeRoute = require('./routes/homepage');
 
 // using routes
-app.use('/auth',authRoutes);
+app.use('/auth',authRoute);
+app.use('/',homeRoute);
 
 
 // Listening

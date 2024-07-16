@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
     },
     {
       sequelize,
-      tableName: "property_amenities",
+      tableName: "propertyamenities",
       modelName: "PropertyAmenities",
       timestamps:false
     }
