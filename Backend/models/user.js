@@ -4,17 +4,17 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Users extends Model {
     static associate(models) {
-      Users.hasMany(models.Property, {
+      Users.hasMany(models.properties, {
         foreignKey: "userId",
         as: "properties",
       });
 
-      Users.hasMany(models.Bookings, {
+      Users.hasMany(models.bookings, {
         foreignKey: "userId",
         as: "bookings",
       });
 
-      Users.hasMany(models.Payments, {
+      Users.hasMany(models.payments, {
         foreignKey: "userId",
         as: "payments",
       });
@@ -45,11 +45,15 @@ module.exports = (sequelize, DataTypes) => {
         type: DataTypes.DATE,
         defaultValue: DataTypes.NOW,
       },
+      updatedAt:{
+        type:DataTypes.DATE,
+        defaultValue:DataTypes.NOW
+      }
     },
     {
       sequelize,
       tableName: "users",
-      modelName: "Users",
+      modelName: "users",
     }
   );
 

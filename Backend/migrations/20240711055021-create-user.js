@@ -1,9 +1,9 @@
-'use strict';
+"use strict";
 /** @type {import('sequelize-cli').Migration} */
 module.exports = {
   async up(queryInterface, Sequelize) {
-    await queryInterface.createTable("Users", {
-      id: {
+    await queryInterface.createTable("users", {
+      userId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -25,17 +25,17 @@ module.exports = {
         type: Sequelize.ENUM("admin", "customer"),
         allowNull: false,
       },
-      created_at: {
+      createdAt: {
         type: Sequelize.DATE,
-        defaultValue:Sequelize.NOW
+        defaultValue: Sequelize.NOW,
       },
       updatedAt: {
-        defaultValue:Sequelize.NOW,
         type: Sequelize.DATE,
+        defaultValue: Sequelize.NOW,
       },
     });
   },
   async down(queryInterface, Sequelize) {
-    await queryInterface.dropTable('Users');
-  }
+    await queryInterface.dropTable("users");
+  },
 };

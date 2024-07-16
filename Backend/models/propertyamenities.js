@@ -8,13 +8,31 @@ module.exports = (sequelize, DataTypes) => {
 
   PropertyAmenities.init(
     {
-      propertyId: DataTypes.INTEGER,
-      amenitiesId: DataTypes.INTEGER,
+      propertyId:{type: DataTypes.INTEGER,
+      allowNull:false,
+      primaryKey:true,
+      references:{
+        model:'properties',
+        key:'propertyId'
+        },
+      onUpdate:'CASCADE',
+      onDelete:'CASCADE'
+  },
+      amenityId:{type:DataTypes.INTEGER,
+      allowNull:false,
+      primaryKey:true,
+      references:{
+        model:'amenities',
+        key:'amenityId'
+        },
+      onUpdate:'CASCADE',
+      onDelete:'CASCADE'
     },
+  },
     {
       sequelize,
-      tableName: "property_amenities",
-      modelName: "PropertyAmenities",
+      tableName: "propertyamenities",
+      modelName: "propertyamenities",
       timestamps:false
     }
   );

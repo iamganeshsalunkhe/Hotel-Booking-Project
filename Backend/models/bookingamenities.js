@@ -8,15 +8,33 @@ module.exports = (sequelize, DataTypes) => {
 
   BookingAmenities.init(
     {
-      bookingsId: DataTypes.INTEGER,
-      amenitiesId: DataTypes.INTEGER,
+      bookingId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        references: {
+          model: "bookings",
+          key: "bookingId",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
+      amenityId: {
+        type: DataTypes.INTEGER,
+        primaryKey: true,
+        references: {
+          model: "amenities",
+          key: "amenityId",
+        },
+        onUpdate: "CASCADE",
+        onDelete: "CASCADE",
+      },
       price: DataTypes.INTEGER,
     },
     {
       sequelize,
-      tableName: "booking_amenities",
-      modelName: "BookingAmenities",
-      timestamps:false
+      tableName: "bookingamenities",
+      modelName: "bookingamenities",
+      timestamps: false,
     }
   );
 

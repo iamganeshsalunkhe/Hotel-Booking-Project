@@ -4,8 +4,8 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Locations extends Model {
     static associate(models) {
-      Locations.hasMany(models.Property, {
-        foreignKey: "locationsId",
+      Locations.hasMany(models.properties, {
+        foreignKey: "locationId",
         as: "properties",
       });
     }
@@ -13,7 +13,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Locations.init(
     {
-      locationsId: {
+      locationId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -23,7 +23,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       tableName: "locations",
-      modelName: "Locations",
+      modelName: "locations",
       timestamps:false
     }
   );
