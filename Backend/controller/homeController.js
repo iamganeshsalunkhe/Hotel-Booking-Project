@@ -6,10 +6,8 @@ const {Property} = require('../models');
 exports.getProperties = async (req,res)=>{
     try {
         // get all properties
-        console.log(`hi`);
         const Properties = await Property.findAll();
-        console.log(Properties);
-        console.log(`hello`);
+        
         // send back response
         res.status(200).json(Properties);
 
