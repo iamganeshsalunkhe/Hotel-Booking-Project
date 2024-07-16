@@ -5,18 +5,18 @@ module.exports = (sequelize, DataTypes) => {
   class Amenities extends Model {
     static associate(models) {
       // many-to-many association with Property
-      Amenities.belongsToMany(models.Property, {
-        through: models.PropertyAmenities,
-        foreignKey: "amenitiesId",
+      Amenities.belongsToMany(models.properties, {
+        through: models.propertyamenities,
+        foreignKey: "amenityId",
         otherKey: "propertyId",
         as: "properties",
       });
 
       // many-to-many association with Bookings
-      Amenities.belongsToMany(models.Bookings, {
-        through: models.BookingAmenities,
-        foreignKey: "amenitiesId",
-        otherKey: "bookingsId",
+      Amenities.belongsToMany(models.bookings, {
+        through: models.bookingamenities,
+        foreignKey: "amenityId",
+        otherKey: "bookingId",
         as: "bookings",
       });
     }
@@ -24,7 +24,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Amenities.init(
     {
-      amenitiesId: {
+      amenityId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       tableName: "amenities",
-      modelName: "Amenities",
+      modelName: "amenities",
       timestamps:false
     }
   );

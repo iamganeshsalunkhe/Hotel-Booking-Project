@@ -4,13 +4,13 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Payments extends Model {
     static associate(models) {
-      Payments.belongsTo(models.Users, {
+      Payments.belongsTo(models.users, {
         foreignKey: "userId",
         as: "user",
       });
 
-      Payments.belongsTo(models.Bookings, {
-        foreignKey: "bookingsId",
+      Payments.belongsTo(models.bookings, {
+        foreignKey: "bookingId",
         as: "booking",
       });
     }
@@ -18,24 +18,23 @@ module.exports = (sequelize, DataTypes) => {
 
   Payments.init(
     {
-      paymentsId: {
+      paymentId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
       },
       userId: DataTypes.INTEGER,
-      bookingsId: DataTypes.INTEGER,
+      bookingId: DataTypes.INTEGER,
       amount: DataTypes.INTEGER,
       paymentDate: {
         type: DataTypes.DATE,
-        defaultValue: DataTypes.NOW,
-        field: "payment_date",
+        defaultValue: DataTypes.NOW
       },
     },
     {
       sequelize,
       tableName: "payments",
-      modelName: "Payments",
+      modelName: "payments",
       timestamps:false
     }
   );

@@ -4,25 +4,25 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Property extends Model {
     static associate(models) {
-      Property.belongsTo(models.Users, {
+      Property.belongsTo(models.users, {
         foreignKey: "userId",
         as: "user",
       });
 
-      Property.belongsTo(models.Locations, {
-        foreignKey: "locationsId",
+      Property.belongsTo(models.locations, {
+        foreignKey: "locationId",
         as: "location",
       });
 
-      Property.hasMany(models.Bookings, {
+      Property.hasMany(models.bookings, {
         foreignKey: "propertyId",
         as: "bookings",
       });
 
-      Property.belongsToMany(models.Amenities, {
-        through: models.PropertyAmenities,
+      Property.belongsToMany(models.amenities, {
+        through: models.propertyamenities,
         foreignKey: "propertyId",
-        otherKey: "amenitiesId",
+        otherKey: "amenityId",
         as: "amenities",
       });
     }
@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
     {
       sequelize,
       tableName: "properties",
-      modelName: "Property",
+      modelName: "properties",
       timestamps:false
       
     }

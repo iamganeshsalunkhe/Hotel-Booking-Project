@@ -4,25 +4,25 @@ const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
   class Bookings extends Model {
     static associate(models) {
-      Bookings.belongsTo(models.Users, {
+      Bookings.belongsTo(models.users, {
         foreignKey: "userId",
         as: "user",
       });
 
-      Bookings.belongsTo(models.Property, {
+      Bookings.belongsTo(models.properties, {
         foreignKey: "propertyId",
         as: "property",
       });
 
-      Bookings.belongsToMany(models.Amenities, {
-        through: models.BookingAmenities,
-        foreignKey: "bookingsId",
-        otherKey: "amenitiesId",
+      Bookings.belongsToMany(models.amenities, {
+        through: models.bookingamenities,
+        foreignKey: "bookingId",
+        otherKey: "amenityId",
         as: "amenities",
       });
 
-      Bookings.hasMany(models.Payments, {
-        foreignKey: "bookingsId",
+      Bookings.hasMany(models.payments, {
+        foreignKey: "bookingId",
         as: "payments",
       });
     }
@@ -30,7 +30,7 @@ module.exports = (sequelize, DataTypes) => {
 
   Bookings.init(
     {
-      bookingsId: {
+      bookingId: {
         type: DataTypes.INTEGER,
         primaryKey: true,
         autoIncrement: true,
@@ -46,7 +46,7 @@ module.exports = (sequelize, DataTypes) => {
       sequelize,
       timestamps:false,
       tableName: "bookings",
-      modelName: "Bookings",
+      modelName: "bookings",
     }
   );
 
