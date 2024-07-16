@@ -3,17 +3,27 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('bookingamenities', {
-      id: {
-        allowNull: false,
-        autoIncrement: true,
-        primaryKey: true,
-        type: Sequelize.INTEGER
-      },
       bookingId: {
-        type: Sequelize.INTEGER
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        primaryKey:true,
+        references:{
+          model:'bookings',
+          key:'bookingId'
+        },
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE'
       },
-      amenitiesId: {
-        type: Sequelize.INTEGER
+      amenityId: {
+        type: Sequelize.INTEGER,
+        allowNull:false,
+        primaryKey:true,
+        references:{
+          model:'amenities',
+          key:'amenityId'
+        },
+        onUpdate:'CASCADE',
+        onDelete:'CASCADE'
       },
       price: {
         type: Sequelize.INTEGER

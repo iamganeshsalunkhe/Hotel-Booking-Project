@@ -3,7 +3,7 @@
 module.exports = {
   async up(queryInterface, Sequelize) {
     await queryInterface.createTable('bookings', {
-      id: {
+      bookingId: {
         allowNull: false,
         autoIncrement: true,
         primaryKey: true,
@@ -22,7 +22,8 @@ module.exports = {
         type: Sequelize.DATE
       },
       status: {
-        type: Sequelize.ENUM('Confirmed', 'Cancelled')
+        type: Sequelize.ENUM('Confirmed', 'Cancelled'),
+        defaultValue:'Confirmed'
       },
       numberOfGuests: {
         type: Sequelize.INTEGER
