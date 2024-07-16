@@ -1,8 +1,10 @@
+// import required modules
 const bcryptjs = require('bcryptjs');
-
 const {Users} = require('../models');
+const generateAuthToken = require('../utils/authToken');
 
 
+// for signup functionality
 exports.signup = async (req,res) =>{
     try
     {// get the required field as input
@@ -32,5 +34,34 @@ exports.signup = async (req,res) =>{
     catch(error){
         // if any error occurs
         res.status(500).json({message:"Internal Server Error"});
+    }
+};
+
+//for login functionality
+exports.login = async(req,res) =>{
+    try {
+        // get input from user (email,password);
+        const{email,password} = req.body;
+
+        // find user using email
+        const user = await Users.findOne({where:{email}});
+
+        // if email not exits
+        if (!user) return res.status(400).json({message:"Invalid email or You don't have account with us!!"});
+
+        // check for the right password 
+        const checkPassword = await bcryptjs.compare(password,user.password);
+
+        // if password is wrong
+        if (!checkPassword) return res.status(400).json({message:"Invalid password"});
+
+
+        // generate token if user have correcr credentials
+        const token= generateAuthToken(user);
+        res.status(200).json({token});
+
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Internal server error"});
     }
 };
