@@ -14,11 +14,13 @@ app.use(express.json());
 const authRoute = require('./routes/auth');
 const homeRoute = require('./routes/homepage');
 const locationRoute = require('./routes/getlocation');
+const propertiesRoute = require('./routes/properties');
 
 // using routes
-app.use('/auth',authRoute);
+app.use('/',authRoute);
 app.use('/',homeRoute);
 app.use('/',locationRoute);
+app.use('/',propertiesRoute);
 
 // Listening
 app.listen(PORT, "localhost", () => {
