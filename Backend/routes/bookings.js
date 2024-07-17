@@ -15,4 +15,7 @@ router.get('/booking/user',authenticate,bookingController.getUserBooking);
 // get booking for a property
 router.get('/booking/property/:propertyId',authenticate,bookingController.getPropertyBooking);
 
+// update the booking
+router.put('/booking/:bookingId',authenticate,bookingController.updateBooking);
+
 module.exports = router;

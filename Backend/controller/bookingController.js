@@ -66,3 +66,33 @@ exports.getPropertyBooking = async (req,res)=>{
         res.status(500).json({message:"Internal server error"});
     }
 };
+
+
+// update the booking
+exports.updateBooking = async(req,res)=>{
+    try {
+        // get bookingId from req.params
+        const {bookingId} = req.params;
+        // get data from user
+        const {checkInDate,checkOutDate,numberOfGuests } = req.body;
+
+        const booking = await bookings.findByPk(bookingId);
+
+        // if checkindate not provided
+        booking.checkInDate = checkInDate || booking.checkInDate;
+
+        // if checkoutdate not provided
+        booking.checkOutDate = checkOutDate || booking.checkOutDate;
+
+        // if numberofguests not provided
+        booking.numberOfGuests = numberOfGuests || booking.numberOfGuests;
+
+        // save all changes
+        await booking.save();
+
+        res.status(200).json(booking);
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Internal server error"});
+    }
+};
