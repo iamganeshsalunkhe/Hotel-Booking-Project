@@ -16,4 +16,7 @@ router.put('/properties/:propertyId',authenticate,propertyController.updatePrope
 // delete a property
 router.delete('/properties/:propertyId',authenticate,propertyController.deleteProperty);
 
+// get all properties (self-listed)
+router.get('/properties/getall',authenticate,propertyController.getAllProperties);
+
 module.exports = router;

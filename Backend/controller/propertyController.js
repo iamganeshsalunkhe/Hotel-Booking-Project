@@ -96,6 +96,26 @@ exports.deleteProperty = async (req, res) => {
     // send a success response
     res.status(200).json({ message: "Property deleted successfully" });
   } catch (error) {
+    // if any error occurs
     res.status(500).json({ message: "Internal server error" });
   }
+};
+
+
+// get all properties (self-listed)
+exports.getAllProperties = async (req,res)=>{
+    try {
+      // get information as input
+      // get userid from token
+      const { userId } = req.user;
+    
+      // fetch all properties using userId
+      const Allproperties = await properties.findAll({where:{userId}});
+
+      // send the success reponse
+      res.status(200).json(Allproperties);
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Internal server error"});
+    }
 };
