@@ -96,3 +96,23 @@ exports.updateBooking = async(req,res)=>{
         res.status(500).json({message:"Internal server error"});
     }
 };
+
+// delete a booking
+exports.deleteBooking = async (req,res)=>{
+    try {
+        // get from params
+        const {bookingId} = req.params;
+
+        // find the booking by bookingId
+        const booking = await bookings.findByPk(bookingId);
+
+        // delete the booking
+        await booking.destroy();
+
+        // send back the success res
+        res.status(200).json({message:"booking cancelled"});
+    } catch (error) {
+        // if any error occurs
+        res.status(500).json({message:"Internal server error"})
+    }
+};

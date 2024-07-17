@@ -18,4 +18,7 @@ router.get('/booking/property/:propertyId',authenticate,bookingController.getPro
 // update the booking
 router.put('/booking/:bookingId',authenticate,bookingController.updateBooking);
 
+// delete the booking
+router.delete('/booking/:bookingId',authenticate,bookingController.deleteBooking);
+
 module.exports = router;
