@@ -16,6 +16,7 @@ const homeRoute = require('./routes/homepage');
 const locationRoute = require('./routes/getlocation');
 const propertiesRoute = require('./routes/properties');
 const profileRoute = require('./routes/profile');
+const amenityRoute = require('./routes/amenities');
 
 // using routes
 app.use('/',authRoute);
@@ -23,6 +24,7 @@ app.use('/',homeRoute);
 app.use('/',locationRoute);
 app.use('/',propertiesRoute);
 app.use('/',profileRoute);
+app.use('/',amenityRoute);
 
 // Listening
 app.listen(PORT, "localhost", () => {
