@@ -13,4 +13,7 @@ router.post('/properties',authenticate,propertyController.addProperty);
 // update an existing property
 router.put('/properties/:propertyId',authenticate,propertyController.updateProperties);
 
+// delete a property
+router.delete('/properties/:propertyId',authenticate,propertyController.deleteProperty);
+
 module.exports = router;

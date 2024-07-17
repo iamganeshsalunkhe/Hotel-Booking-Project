@@ -1,4 +1,5 @@
 // import the required modules
+const { where } = require("sequelize");
 const { properties } = require("../models");
 
 //add new property(only works when user is logged in)
@@ -67,6 +68,34 @@ exports.updateProperties = async (req, res) => {
   } catch (error) {
     // if any error occurs
     console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// for deleting an property functionality(if logged in)
+exports.deleteProperty = async (req, res) => {
+  try {
+    // get information as input
+    // get userid from token
+    const { userId } = req.user;
+
+    // get propertyId from request parameters
+    const { propertyId } = req.params;
+
+    // find the property using userId and propertyId
+    const property = await properties.findOne({
+      where: { userId, propertyId },
+    });
+
+    if (!property)
+      return res.status(404).json({ message: "Property not found" });
+
+    // to delete the property
+    await property.destroy();
+
+    // send a success response
+    res.status(200).json({ message: "Property deleted successfully" });
+  } catch (error) {
     res.status(500).json({ message: "Internal server error" });
   }
 };
