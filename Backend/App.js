@@ -15,12 +15,14 @@ const authRoute = require('./routes/auth');
 const homeRoute = require('./routes/homepage');
 const locationRoute = require('./routes/getlocation');
 const propertiesRoute = require('./routes/properties');
+const profileRoute = require('./routes/profile');
 
 // using routes
 app.use('/',authRoute);
 app.use('/',homeRoute);
 app.use('/',locationRoute);
 app.use('/',propertiesRoute);
+app.use('/',profileRoute);
 
 // Listening
 app.listen(PORT, "localhost", () => {

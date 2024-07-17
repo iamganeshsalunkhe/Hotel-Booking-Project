@@ -24,8 +24,7 @@ module.exports = (sequelize, DataTypes) => {
         ...this.get(),
         password: undefined,
         createdAt: undefined,
-        updatedAt: undefined,
-        role: undefined,
+        updatedAt: undefined
       };
     }
   }
