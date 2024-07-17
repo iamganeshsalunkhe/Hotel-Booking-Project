@@ -13,4 +13,7 @@ const router = express.Router();
 // get profile
 router.get('/profile',authenticate,profileController.getProfile);
 
+// to updte the profile
+router.put('/profile/update',authenticate,profileController.updateProfile);
+
 module.exports = router;
