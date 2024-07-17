@@ -6,7 +6,12 @@ const authenticate = require('../middlware/authenticate');
 // initiate router
 const router = express.Router();
 
-router.get('/',authenticate,amenityController.getAllamenities);
+// to get all amenities
+router.get('/amenities',authenticate,amenityController.getAllamenities);
+
+// to add a new amenity
+router.post('/amenities',authenticate,amenityController.createAmenity);
+
 
 
 module.exports = router;
