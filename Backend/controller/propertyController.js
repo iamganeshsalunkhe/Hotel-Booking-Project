@@ -1,33 +1,72 @@
 // import the required modules
-const {properties}  = require('../models');
+const { properties } = require("../models");
 
 //add new property(only works when user is logged in)
-exports.addProperty  = async (req,res) =>{
-    try
-    {// get information as input
+exports.addProperty = async (req, res) => {
+  try {
+    // get information as input
     // get userid from token
-    const {userId} = req.user;
+    const { userId } = req.user;
 
     // get all info as a input
-    const {locationId, name, address, roomtype,price, image} = req.body;
+    const { locationId, name, address, roomType, price, image } = req.body;
 
     // create a new property
     const newProperty = await properties.create({
-        userId,
-        locationId,
-        name,
-        address,
-        roomtype,
-        price,
-        image
-        });
+      userId,
+      locationId,
+      name,
+      address,
+      roomType,
+      price,
+      image,
+    });
     // send the newly created property as a response
-        res.status(201).json({message:"New property created successfully.",newProperty});
-    
-    }
-    catch(error){
-        // if any error occurs 
-        console.log(error);
-        res.status(500).json({message:"Internal server error"});
-    };
+    res
+      .status(201)
+      .json({ message: "New property created successfully.", newProperty });
+  } catch (error) {
+    // if any error occurs
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
+};
+
+// update an existing properties(if Logged In)
+exports.updateProperties = async (req, res) => {
+  try {
+    // get information as input
+    // get userid from token
+    const { userId } = req.user;
+    // get propertyId from request parameters
+    const { propertyId } = req.params;
+
+    // get all info as input
+    const { locationId, name, address, roomType, price, image } = req.body;
+
+    // find the property by propertyId and userId
+    const property = await properties.findOne({
+      where: { propertyId, userId },
+    });
+
+    if (!property)
+      return res.status(404).json({ message: "Property not found" });
+
+    // update the property
+
+    await property.update({
+      locationId,
+      name,
+      address,
+      roomType,
+      price,
+      image,
+    });
+    // send the updated property as a response
+    res.status(200).json({ message: "Property Updated", property });
+  } catch (error) {
+    // if any error occurs
+    console.log(error);
+    res.status(500).json({ message: "Internal server error" });
+  }
 };
