@@ -17,6 +17,7 @@ const locationRoute = require('./routes/getlocation');
 const propertiesRoute = require('./routes/properties');
 const profileRoute = require('./routes/profile');
 const amenityRoute = require('./routes/amenities');
+const bookingRoute = require('./routes/bookings');
 
 // using routes
 app.use('/',authRoute);
@@ -25,6 +26,7 @@ app.use('/',locationRoute);
 app.use('/',propertiesRoute);
 app.use('/',profileRoute);
 app.use('/',amenityRoute);
+app.use('/',bookingRoute);
 
 // Listening
 app.listen(PORT, "localhost", () => {
