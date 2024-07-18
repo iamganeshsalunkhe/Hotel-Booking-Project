@@ -1,5 +1,4 @@
 // import the required modules
-const { where } = require("sequelize");
 const { properties } = require("../models");
 
 //add new property(only works when user is logged in)
