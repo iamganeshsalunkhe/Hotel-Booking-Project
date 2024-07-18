@@ -1,5 +1,5 @@
 const jwt = require("jsonwebtoken");
-const { Users } = require("../models"); 
+const { users } = require("../models"); 
 
 module.exports = async (req, res, next) => {
     // getting token
@@ -15,7 +15,7 @@ module.exports = async (req, res, next) => {
         const getUser = jwt.verify(token, process.env.JWT_SECRET);
 
         // extract user using Primary key 
-        const user = await Users.findByPk(getUser.id); 
+        const user = await users.findByPk(getUser.id); 
     
         // if user not found
         if (!user) {
@@ -28,6 +28,7 @@ module.exports = async (req, res, next) => {
         next();
     } catch (error) {
         // if invalid token provided
+        console.log(error);
     res.status(400).json({ message: "Invalid token." });
     }
 };

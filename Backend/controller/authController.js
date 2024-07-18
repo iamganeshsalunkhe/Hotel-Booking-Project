@@ -1,6 +1,6 @@
 // import required modules
 const bcryptjs = require('bcryptjs');
-const {Users} = require('../models');
+const {users} = require('../models');
 const generateAuthToken = require('../utils/authToken');
 
 
@@ -11,7 +11,7 @@ exports.signup = async (req,res) =>{
     const {email,username,password,role} = req.body;
 
     // check the user is already exits
-    const checkUser = await Users.findOne({where:{email}})
+    const checkUser = await users.findOne({where:{email}})
     
     // if user already exits
     if (checkUser)return res.status(400).json({message:"You already have account with us! Please Login!"});
@@ -22,7 +22,7 @@ exports.signup = async (req,res) =>{
     const hashPassword = await bcryptjs.hash(password,10);
 
     // create a new user
-    const createUser = await Users.create(
+    const createUser = await users.create(
         {   username,
             email,
             password:hashPassword,
@@ -44,7 +44,7 @@ exports.login = async(req,res) =>{
         const{email,password} = req.body;
 
         // find user using email
-        const user = await Users.findOne({where:{email}});
+        const user = await users.findOne({where:{email}});
 
         // if email not exits
         if (!user) return res.status(400).json({message:"Invalid email or You don't have account with us!!"});

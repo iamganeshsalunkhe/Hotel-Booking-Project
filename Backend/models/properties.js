@@ -36,7 +36,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       userId: DataTypes.INTEGER,
-      locationsId: DataTypes.INTEGER,
+      locationId: DataTypes.INTEGER,
       name: DataTypes.STRING,
       address: DataTypes.STRING,
       roomType: DataTypes.STRING,
