@@ -1,12 +1,14 @@
 // import Navbar from './Components/Navbar';
-import Signin from './Components/Signin';
+import Login from './Components/Login';
+// import Signin from './Components/Signin';
 import './index.css';
 
 function App() {
   return (
     <>
       {/* <Navbar/>   */}
-      <Signin/>
+      {/* <Signin/> */}
+      <Login/>
     </>
   )
 }

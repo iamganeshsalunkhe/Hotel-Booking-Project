@@ -1,5 +1,5 @@
-import { FaRegEye } from "react-icons/fa";
 import { useState } from "react";
+import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 function Signin() {
     // change the state of password 
