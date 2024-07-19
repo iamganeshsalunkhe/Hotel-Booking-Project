@@ -1,5 +1,5 @@
 // import Navbar from './Components/Navbar';
-import Login from './Components/Login';
+import Footer from './Components/Footer';
 // import Signin from './Components/Signin';
 import './index.css';
 
@@ -8,7 +8,8 @@ function App() {
     <>
       {/* <Navbar/>   */}
       {/* <Signin/> */}
-      <Login/>
+      {/* <Login/> */}
+      <Footer/>
     </>
   )
 }
