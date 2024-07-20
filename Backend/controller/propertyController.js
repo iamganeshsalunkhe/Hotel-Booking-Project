@@ -27,8 +27,7 @@ exports.addProperty = async (req, res) => {
       .json({ message: "New property created successfully.", newProperty });
   } catch (error) {
     // if any error occurs
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Error while adding a property" });
   }
 };
 
@@ -66,8 +65,7 @@ exports.updateProperties = async (req, res) => {
     res.status(200).json({ message: "Property Updated", property });
   } catch (error) {
     // if any error occurs
-    console.log(error);
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Error while updating a property" });
   }
 };
 
@@ -96,7 +94,7 @@ exports.deleteProperty = async (req, res) => {
     res.status(200).json({ message: "Property deleted successfully" });
   } catch (error) {
     // if any error occurs
-    res.status(500).json({ message: "Internal server error" });
+    res.status(500).json({ message: "Error while deleting a property" });
   }
 };
 
@@ -115,6 +113,6 @@ exports.getAllProperties = async (req,res)=>{
       res.status(200).json(Allproperties);
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while getting all properties"});
     }
 };

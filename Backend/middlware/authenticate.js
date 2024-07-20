@@ -28,7 +28,6 @@ module.exports = async (req, res, next) => {
         next();
     } catch (error) {
         // if invalid token provided
-        console.log(error);
     res.status(400).json({ message: "Invalid token." });
     }
 };

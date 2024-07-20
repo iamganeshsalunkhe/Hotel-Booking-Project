@@ -13,7 +13,7 @@ exports.getProperties = async (req,res)=>{
 
     } catch (error) {
         // if any error occurs
-        console.log(error);
-        res.status(500).json({message:"Internal server error "});
+        
+        res.status(500).json({message:"Error while getting all properties on home page"});
     }
 };

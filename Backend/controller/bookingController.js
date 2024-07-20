@@ -24,7 +24,7 @@ exports.makeBooking = async(req,res)=>{
     } catch (error) {
         // if any error occurs
 
-        res.status(500).json({message:"Internal server error"});    
+        res.status(500).json({message:"Error while booking"});    
     }
 };
 
@@ -42,8 +42,8 @@ exports.getUserBooking  = async(req,res) =>{
         res.status(200).json(booking);
     } catch (error) {
         // if any error occurs
-        console.log(error);
-        res.status(500).json({message:"Internal server error"});
+        
+        res.status(500).json({message:"Error while fetching user wise booking"});
     }
 };
 
@@ -63,7 +63,7 @@ exports.getPropertyBooking = async (req,res)=>{
         res.status(200).json(booking);
     } catch (error) {
         // if any  error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while fetching property wise booking"});
     }
 };
 
@@ -93,7 +93,7 @@ exports.updateBooking = async(req,res)=>{
         res.status(200).json(booking);
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while updating booking"});
     }
 };
 
@@ -113,6 +113,6 @@ exports.deleteBooking = async (req,res)=>{
         res.status(200).json({message:"booking cancelled"});
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"})
+        res.status(500).json({message:"Error while cancelling booking."})
     }
 };

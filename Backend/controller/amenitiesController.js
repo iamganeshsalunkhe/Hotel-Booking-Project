@@ -11,7 +11,7 @@ exports.getAllamenities = async (req,res)=>{
         res.status(200).json(amenity);
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while fecthing amenities"});
     }
 };
 
@@ -32,7 +32,7 @@ exports.createAmenity = async (req,res)=>{
 
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while creating an amenity"});
     }
 };
 
@@ -64,7 +64,7 @@ exports.updateAmenity = async(req,res) =>{
 
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal error"});
+        res.status(500).json({message:"Error while updating an amenity"});
     }
 };
 
@@ -88,6 +88,6 @@ exports.deleteAmenity = async (req,res)=>{
 
     } catch (error) {
         // if any error occurs
-        res.status(500).json({message:"Internal server error"});
+        res.status(500).json({message:"Error while deleting an amenity"});
     }
 };
