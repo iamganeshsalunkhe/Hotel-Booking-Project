@@ -2,13 +2,13 @@ function Footer() {
     return (
     <>
     <div>
-    <footer className="footer  p-10 text-black font-normal">
+    <footer className="footer  p-10 text-black font-medium justify-between">
         <nav>
             <h6 className="footer-title text-black">Services</h6>
             <a className="link link-hover">Book a hotel</a>
             <a className="link link-hover">List your property</a>
             <a className="link link-hover">Manage booking</a>
-            <a className="likn link-hover">Mangae Properties</a>
+            <a className="likn link-hover">Mange Properties</a>
         </nav>
         <nav>
             <h6 className="footer-title">Company</h6>

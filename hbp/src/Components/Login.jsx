@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
+import { Link } from "react-router-dom";
 function Login() {
 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
@@ -78,7 +79,10 @@ function Login() {
           </form>
 
           <p className="mt-10 text-center text-sm text-blue-500">
-            Not a member? Signin
+            Not a member?  
+            <Link to='/signup' className="m-1">
+            Signup
+            </Link>
             
           </p>
         </div>

@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-function Signin() {
+import { Link } from "react-router-dom";
+function Signup() {
     // change the state of password 
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
@@ -90,7 +91,10 @@ function Signin() {
                     </button>
                 </div>
             </form>
-            <p className="mt-10 text-center text-sm text-blue-500">Already a member ? Login
+            <p className="mt-10 text-center text-sm text-blue-500">Already a member ? 
+                <Link to='/login' className="m-1">
+                 Login
+                </Link>
             </p>
         </div>
       </div>
@@ -99,4 +103,4 @@ function Signin() {
     )
 }
 
-export default Signin
+export default Signup
