@@ -1,5 +1,6 @@
-const express = require("express");
+const express = require('express');
 const dotenv = require("dotenv");
+const cors = require('cors');
 // configuration of dotenv
 dotenv.config();
 
@@ -8,6 +9,7 @@ const PORT = process.env.PORT || 4000;
 
 //initiating app
 const app = express();
+app.use(cors());
 app.use(express.json());
 
 // importing routes
