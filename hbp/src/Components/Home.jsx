@@ -1,5 +1,8 @@
+
 import homeImage from '../../public/Images/Home.jpg';
 function Home() {
+    
+
     return (
         <>
             <div className=" relative h-screen">
