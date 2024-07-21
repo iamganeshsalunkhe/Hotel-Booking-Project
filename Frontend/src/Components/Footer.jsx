@@ -2,7 +2,7 @@ function Footer() {
     return (
     <>
     <div>
-    <footer className="footer  p-10 text-black font-medium justify-between">
+    <footer className="footer  p-10 text-black font-medium justify-between bg-gray-200 mt-3">
         <nav>
             <h6 className="footer-title text-black">Services</h6>
             <a className="link link-hover">Book a hotel</a>
@@ -24,7 +24,7 @@ function Footer() {
             <a className="link link-hover">Cookie policy</a>
         </nav>
     </footer>
-    <footer className="footer bg-base-200 text-base-content border-base-300 border-t px-10 py-4">
+    <footer className="footer  text-base-content border-base-300 border-t px-10 py-4 bg-white">
         <aside className="grid-flow-col items-center">
             <img src='../../public/Images/Logo.jpg' width={100} height={100}/>
             <p>
@@ -37,7 +37,7 @@ function Footer() {
         </span>
     </p>
   </aside>
-  <nav className="md:place-self-center md:justify-self-end">
+  <nav className="md:place-self-center md:justify-self-end ">
     <div className="grid grid-flow-col gap-4">
       <a>
         <svg

@@ -1,11 +1,14 @@
 import { FaUserPlus } from "react-icons/fa";
 import { FaUserAlt } from "react-icons/fa";
+import styles from './Navbar.module.css'
+import { Link,useLocation } from "react-router-dom";
 
 
 function Navbar() {
+  const location = useLocation();
     return (
         <>
-          <div className='bg-slate-400 '>
+          <div className={styles.main}>
             <div className="navbar bg-base-300">
   <div className="navbar-start">
     <div className="dropdown">
@@ -25,27 +28,33 @@ function Navbar() {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content bg-base-100 rounded-box z-[1] mt-3 w-52 p-2 shadow">
-        <li><a>My Profile</a></li>
-        <li><a>My   </a></li>
-        <li><a>About EasyStay</a></li>
+        className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-red-400">
+        <li><Link to=''>My Profile</Link></li>
+        <li><Link to=''>My   </Link></li>
+        <li><Link to=''>About EasyStay</Link></li>
       </ul>
     </div>
   </div>
   <div className="navbar-center">
-    <a className="btn btn-ghost text-xl tracking-tight hover:tracking-wide ">EasyStay</a>
+    <Link to='/' className="btn btn-ghost text-xl tracking-tight hover:tracking-wide ">EasyStay</Link>
   </div>
   <div className="navbar-end ">
     <div>
+      {/* if user on other than signup page then show signup icon */}
+      {location.pathname !=='/signup'?
+      <Link to='/signup'>
     <button className="btn btn-ghost btn-circle bg-white hover:scale-110" >
         <FaUserPlus  />
     </button>
+      </Link>:''}
     </div>
+    {/* if user on other than signup page then show signup icon */}
+    {location.pathname !== '/login'?
+    <Link to='/login'>
     <button className="btn btn-ghost btn-circle bg-white mx-2">
-      <div className="indicator">
-        <FaUserAlt/>
-      </div>
+        <FaUserAlt/>  
     </button>
+    </Link>:''}
   </div>
             </div>
           </div>  

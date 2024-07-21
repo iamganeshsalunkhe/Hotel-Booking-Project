@@ -5,8 +5,9 @@ import Datepicker from 'react-datepicker';
 import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 
+
 function Datepickers({onSerach}) {
-    const [startDate,setStartDate] = useState(null);
+    const [startDate,setStartDate] = useState();
     const [endDate,setEndDate] = useState(null);
 
 
@@ -22,28 +23,37 @@ function Datepickers({onSerach}) {
     return (
         <>
           <div className='flex flex-col items-center'>
-            <div className='flex space-x-4 mb-4'>
+            <div className='flex space-x-4 mb-4 mt-2'>
                 <div>
-                    <label className='block text-m font-medium text-gray-700'>Check-in</label>
+                    <label className=' mx-2 text-m font-medium text-gray-700'>Check-in</label>
                     <Datepicker
                     selected={startDate}
                     onChange={(date)=>setStartDate(date)}
+                    showIcon
+                    isClearable
+                    placeholderText='Select check-in date'
                     selectsStart
+                    closeOnScroll={true}
                     startDate={startDate}
                     endDate={endDate}
+                    minDate={new Date()}
                     dateFormat="dd/MM/yyyy"
                     className='border rounded px-2 py-1'
                     />  
                 </div>
                 <div>
-                    <label className='block text-m font-medium text-gray-700'>Check-out</label>
+                    <label className='mx-2  text-m font-medium text-gray-700'>Check-out</label>
                     <Datepicker 
                     selected={endDate}
+                    showIcon
+                    closeOnScroll={true}
+                    isClearable
+                    placeholderText='Select check-out date'
                     onChange={(date)=>setEndDate(date)}
                     selectsEnd
                     startDate={startDate}
                     endDate={endDate}
-                    minDate={startDate}
+                    minDate={new Date() + 1}
                     dateFormat="dd/MM/yyyy"
                     className='border rounded px-2 py-1'/>
                 </div>
