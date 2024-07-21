@@ -1,6 +1,8 @@
+// impory required modules
 const express = require('express');
 const dotenv = require("dotenv");
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
 // configuration of dotenv
 dotenv.config();
 
@@ -10,6 +12,7 @@ const PORT = process.env.PORT || 4000;
 //initiating app
 const app = express();
 app.use(cors());
+app.use(cookieParser());
 app.use(express.json());
 
 // importing routes

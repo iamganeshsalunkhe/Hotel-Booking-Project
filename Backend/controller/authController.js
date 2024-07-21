@@ -58,10 +58,23 @@ exports.login = async(req,res) =>{
 
         // generate token if user have correcr credentials
         const token= generateAuthToken(user);
-        res.status(200).json({token});
+        res.cookie('token',token,{
+            httpOnly:true,
+            sameSite:'Strict',
+            maxAge:3600000 // 1 hour
+        })
+        res.send("Logged in Successfully");
 
     } catch (error) {
         // if any error occurs
+        console.log(error);
         res.status(500).json({message:"Error while logging in"});
     }
 };
+
+// logout functionality
+
+exports.logout= async (req,res)=>{
+    res.clearCookie('token');
+    res.send("Logged out successfully")
+} ;
