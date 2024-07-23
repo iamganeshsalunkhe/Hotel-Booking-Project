@@ -58,11 +58,12 @@ exports.login = async(req,res) =>{
 
         // generate token if user have correcr credentials
         const token= generateAuthToken(user);
-        res.cookie('token',token,{
+        res.cookie("token",token,{
             httpOnly:true,
-            sameSite:'Strict',
-            maxAge:3600000 // 1 hour
-        })
+            maxAge:3600000, // 1-hour
+            secure:false,
+            sameSite:'lax'
+            })
         res.send("Logged in Successfully");
 
     } catch (error) {

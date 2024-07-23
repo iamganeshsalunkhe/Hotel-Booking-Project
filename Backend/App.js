@@ -11,9 +11,9 @@ const PORT = process.env.PORT || 4000;
 
 //initiating app
 const app = express();
+app.use(express.json());
 app.use(cors());
 app.use(cookieParser());
-app.use(express.json());
 
 // importing routes
 const authRoute = require('./routes/auth');

@@ -27,6 +27,7 @@ exports.addProperty = async (req, res) => {
       .json({ message: "New property created successfully.", newProperty });
   } catch (error) {
     // if any error occurs
+    console.log(error);
     res.status(500).json({ message: "Error while adding a property" });
   }
 };
