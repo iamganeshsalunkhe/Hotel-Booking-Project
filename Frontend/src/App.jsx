@@ -3,7 +3,8 @@
 // import Homepage from './Pages/Homepage';
 // import Loginpage from './Pages/Loginpage';
 // import Signuppage from './Pages/Signuppage';
-import Property from './Components/Property';
+import Amenity from './Components/Amenity';
+// import Property from './Components/Property';
 
 import './index.css';
 
@@ -19,7 +20,8 @@ function App() {
       //     </Routes>  
       //     <Toaster/>  
       // </BrowserRouter>
-      <Property/>
+      // <Property/>
+      <Amenity/>
   )
 }
 

@@ -1,5 +1,5 @@
 // import the required modules
-const { properties } = require("../models");
+const { properties,amenities } = require("../models");
 
 //add new property(only works when user is logged in)
 exports.addProperty = async (req, res) => {
@@ -117,3 +117,24 @@ exports.getAllProperties = async (req,res)=>{
         res.status(500).json({message:"Error while getting all properties"});
     }
 };
+
+// associate amenities with properties
+
+// exports.addAmenitiesToProperty = async(req,res)=>{
+//   const {propertyId} = req.params;
+
+//   const {amenity }= req.body;
+
+//   try {
+//     const Property = await properties.findByPk(propertyId);
+//     if (!Property) return res.status(404).json({message:"Property not found"});
+
+    // find all amenities by Id
+//     const allAmenities = await amenities.findAll({where:{id:amenities}});
+//     if (allAmenities.length !== amenity.length){  
+//         return res.status(404).json({message:"One or more amenities not found"})
+//     }
+//   } catch (error) {
+    
+//   }
+// }
