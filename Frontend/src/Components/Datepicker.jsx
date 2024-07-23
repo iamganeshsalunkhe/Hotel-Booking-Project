@@ -6,7 +6,7 @@ import 'react-datepicker/dist/react-datepicker.css';
 import { format } from 'date-fns';
 
 
-function Datepickers({onSerach}) {
+function Datepickers({onSearch}) {
     const [startDate,setStartDate] = useState();
     const [endDate,setEndDate] = useState(null);
 
@@ -16,13 +16,12 @@ function Datepickers({onSerach}) {
         const formatStartDate = startDate ? format(startDate,'dd/MM/yyyy'):null;
         const formatEndDate = endDate ? format(endDate,'dd/MM/yyyy'):null;
             
-        onSerach(formatStartDate,formatEndDate);
+        onSearch(formatStartDate,formatEndDate);
         }
     
 
     return (
-        <>
-          <div className='flex flex-col items-center'>
+        <div className='flex flex-col items-center'>
             <div className='flex space-x-4 mb-4 mt-2'>
                 <div>
                     <label className=' mx-2 text-m font-medium text-gray-700'>Check-in</label>
@@ -60,10 +59,9 @@ function Datepickers({onSerach}) {
             </div>
                 <button onClick={handleSearch}
                 className='px-4 py-2 bg-blue-600 text-white rounded'>
-                    Serach
+                    Search
                 </button>            
-            </div>  
-        </>
+            </div>
     )
 }
 

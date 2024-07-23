@@ -1,6 +1,5 @@
 function Footer() {
     return (
-    <>
     <div>
     <footer className="footer  p-10 text-black font-medium justify-between bg-gray-200 mt-3">
         <nav>
@@ -75,8 +74,7 @@ function Footer() {
     </div>
   </nav>
 </footer>
-</div>   
-</>
+</div>
     )
 }
 

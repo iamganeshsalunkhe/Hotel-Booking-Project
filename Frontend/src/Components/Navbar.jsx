@@ -1,5 +1,4 @@
-import { FaUserPlus } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserPlus ,FaUserAlt} from "react-icons/fa";
 import styles from './Navbar.module.css'
 import { Link,useLocation } from "react-router-dom";
 
@@ -7,8 +6,7 @@ import { Link,useLocation } from "react-router-dom";
 function Navbar() {
   const location = useLocation();
     return (
-        <>
-          <div className={styles.main}>
+        <div className={styles.main}>
             <div className="navbar bg-base-300">
   <div className="navbar-start">
     <div className="dropdown">
@@ -57,8 +55,7 @@ function Navbar() {
     </Link>:''}
   </div>
             </div>
-          </div>  
-        </>
+          </div>
     )
 }
 

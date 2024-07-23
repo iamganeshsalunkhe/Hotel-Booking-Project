@@ -1,17 +1,25 @@
 {
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "localhost",
-            "database": "hbp",
-            "username": "root"
-        }
-    ]
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "localhost",
+      "database": "hbp",
+      "username": "root"
+    }
+  ],
+  "cSpell.words": [
+    "Datepicker",
+    "Datepickers",
+    "Loginpage",
+    "Propertypage",
+    "signup",
+    "Signuppage"
+  ]
 }
