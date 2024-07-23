@@ -5,8 +5,9 @@
 - [Technologies Used](#technologies-used)
 - [Features](#features)
 - [Database Schema](#database-schema)
+- [Setup Instructions](#setup-instructions)
 
-
+  
 ## Introduction
 This is a full-stack hotel booking application built from scratch. The application provides basic functionality for users and admin to sign up, log in, and book properties. It features two separate panels: one for customers and one for admins. Admins can manage their properties, while customers can make bookings.
 
@@ -35,6 +36,8 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - **Customer Panel**: Customers can browse properties and make bookings.
 - **Booking System**: Customers can confirm bookings.
 - **About Page**: About us page.
+
+
 
 ## Database Schema
 ```sql
@@ -117,3 +120,46 @@ CREATE TABLE payments (
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (bookings_id) REFERENCES bookings(bookings_id)
 );
+```
+
+
+
+
+###  Setup Instructions
+
+1. **Clone the repository**:
+    ```sh
+    git clone https://github.com/iamganeshsalunkhe/hotel-booking-app.git
+    cd hotel-booking-app
+    ```
+
+2. **Install backend dependencies**:
+    ```sh
+    cd backend
+    npm install
+    ```
+
+3. **Set up MySQL database**:
+    - Create a new MySQL database and update the database configuration in `config/config.json`.
+
+4. **Run database migrations**:
+    ```sh
+    npx sequelize db:migrate
+    ```
+
+5. **Start the backend server**:
+    ```sh
+    npm start
+    ```
+
+6. **Install frontend dependencies**:
+    ```sh
+    cd ../frontend
+    npm install
+    ```
+
+7. **Start the frontend development server**:
+    ```sh
+    npm run dev
+    ```
+
