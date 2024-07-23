@@ -13,6 +13,7 @@ module.exports = async (req, res, next) => {
     try {
         // check user is valid using jwt
         const getUser = jwt.verify(token, process.env.JWT_SECRET);
+        if (!getUser) return res.status(403)
 
         // extract user using Primary key 
         const user = await users.findByPk(getUser.id); 

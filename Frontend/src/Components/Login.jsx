@@ -1,13 +1,37 @@
 import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
-import { Link } from "react-router-dom";
-function Login() {
+import { Link,useNavigate } from "react-router-dom";
+import toast from "react-hot-toast";
+import axios from 'axios';
 
+function Login() {
+    const navigate = useNavigate();
+
+    const[email,setEmail ]= useState('');
+    const [password,setPassword] = useState('');
+    
     const [isPasswordVisible, setIsPasswordVisible] = useState(false)
 
     function handlePassword(){
         setIsPasswordVisible((prevState)=>!prevState)
+    }
+    async function onSubmit(event){
+      event.preventDefault();
+      const userInfo = {
+        email,
+        password
+      }
+      await axios.post("http://localhost:4100/login",userInfo).then((res)=>{
+        if (res.data)
+          {toast.success("Loggedin Successfully")
+          navigate('/');
+        }
+      }) .catch((err)=>{
+        if (err.response){
+          toast.error("Error :" + err.response.data.message)
+        }
+      })
     }
     return (
         <>
@@ -25,7 +49,7 @@ function Login() {
         </div>
 
         <div className="mt-10 sm:mx-auto sm:w-full sm:max-w-sm">
-          <form action="#" method="POST" className="space-y-6">
+          <form onSubmit={onSubmit} className="space-y-6">
             <div>
               <label htmlFor="email" className="block text-sm font-medium leading-6 text-gray-900">
                 Email address
@@ -35,6 +59,8 @@ function Login() {
                   id="email"
                   name="email"
                   type="email"
+                  value={email}
+                  onChange={(e)=>setEmail(e.target.value)}
                   required
                   autoComplete="email"
                   className="block w-full rounded-md border-0 py-1.5 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6"
@@ -59,6 +85,8 @@ function Login() {
                   name="password"
                   type={isPasswordVisible?'text':'password'}
                   required
+                  value={password}
+                  onChange={(e)=>setPassword(e.target.value)}
                   autoComplete="current-password"
                   className="block w-full rounded-md border-0 py-1.5 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pr-12"
                 />
