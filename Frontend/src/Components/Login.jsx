@@ -1,9 +1,11 @@
-import { useState } from "react";
+  import { useState } from "react";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
 import { Link,useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from 'axios';
+
+axios.defaults.withCredentials = true;
 
 function Login() {
     const navigate = useNavigate();
@@ -22,7 +24,12 @@ function Login() {
         email,
         password
       }
-      await axios.post("http://localhost:4100/login",userInfo).then((res)=>{
+      await axios.post("http://localhost:4100/login",userInfo,{
+        headers:{
+          'Content-Type':'application/json'
+        },
+        withCredential:true
+      }).then((res)=>{
         if (res.data)
           {toast.success("Loggedin Successfully")
           navigate('/');

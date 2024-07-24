@@ -18,9 +18,9 @@ function App() {
             <Route path='/signup' element={<Signuppage />} />
              <Route path='/login' element={<Loginpage />} />
              <Route path='*' element={<Homepage />} />
+             <Route path='/property' element={<Property/>}/>
+             <Route path='/amenity' element={<Amenity/>}/>
            </Routes>
-       <Property/> 
-       <Amenity/>
       <Toaster />
      </BrowserRouter>
   )

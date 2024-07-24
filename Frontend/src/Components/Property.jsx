@@ -36,6 +36,7 @@ function Property() {
                 // set location
                 setLocation(response.data);
             } catch (error) {
+                console.log(error)
                 console.error("Error fetching locations :", error);
             }
         };
@@ -60,7 +61,8 @@ function Property() {
                 const response = await axios.post('http://localhost:4100/properties',formData,{
                     headers:{
                         "Content-Type":'multipart/form-data'
-                    }
+                    },
+                    withCredentials:true
                 });
                 setProperty([...property,response.data]);
                 setCurrentProperty({

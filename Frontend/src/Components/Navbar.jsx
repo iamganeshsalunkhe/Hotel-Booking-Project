@@ -27,8 +27,8 @@ function Navbar() {
       <ul
         tabIndex={0}
         className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-red-400">
-        <li><Link to=''>My Profile</Link></li>
-        <li><Link to=''>My   </Link></li>
+        <li><Link to='/property'>My Property</Link></li>
+        <li><Link to='/amenity'>My Amenity  </Link></li>
         <li><Link to=''>About EasyStay</Link></li>
       </ul>
     </div>
