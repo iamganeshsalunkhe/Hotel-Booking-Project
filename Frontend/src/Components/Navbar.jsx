@@ -1,13 +1,28 @@
 import { FaUserPlus ,FaUserAlt} from "react-icons/fa";
 import styles from './Navbar.module.css'
 import { Link,useLocation } from "react-router-dom";
+import { useEffect, useState } from "react";
+import Logout from "./Logout";
+import axios from "axios";
 
 
 function Navbar() {
   const location = useLocation();
-    return (
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(()=>{
+    const checkLogInStatus =async ()=>{
+      try {
+        const response = await axios.get('http://localhost:4100/check-token',{withCredentials:true})
+        setIsLoggedIn(response.status === 200)
+      } catch (error) {
+        setIsLoggedIn(false)
+      }
+    }
+    checkLogInStatus();
+  },[]);
+  return (
         <div className={styles.main}>
-            <div className="navbar bg-base-300">
+            <div className="navbar bg-base-300 flex">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -34,8 +49,10 @@ function Navbar() {
     </div>
   </div>
   <div className="navbar-center">
-    <Link to='/' className="btn btn-ghost text-xl tracking-tight hover:tracking-wide ">EasyStay</Link>
+    <Link to='/' className="btn btn-ghost text-xl tracking-tight  ">EasyStay</Link>
   </div>
+
+  {isLoggedIn? <Logout/>:
   <div className="navbar-end ">
     <div>
       {/* if user on other than signup page then show signup icon */}
@@ -54,6 +71,7 @@ function Navbar() {
     </button>
     </Link>:''}
   </div>
+  }
             </div>
           </div>
     )

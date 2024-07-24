@@ -4,7 +4,6 @@ const { users } = require("../models");
 module.exports = async (req, res, next) => {
     // getting token
     const token = req.cookies.token;
-    console.log(token);
     
     // if token not provided
     if (!token) {

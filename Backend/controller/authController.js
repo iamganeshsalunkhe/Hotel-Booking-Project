@@ -72,6 +72,10 @@ exports.login = async(req,res) =>{
         res.status(500).json({message:"Error while logging in"});
     }
 };
+// check for user is loggedin or not
+exports.checkUser = async(req,res)=>{
+    res.status(200).json({message:"Token is valid"})
+}
 
 // logout functionality
 

@@ -6,12 +6,12 @@ import Loginpage from './Pages/Loginpage';
 import Signuppage from './Pages/Signuppage';
 import Amenity from './Components/Amenity';
 import Property from './Components/Property';
-
 import './index.css';
 
 
 function App() {
   return (
+
       <BrowserRouter>
       <Routes>
              <Route index path='/' element={<Homepage />} />
