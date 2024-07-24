@@ -1,6 +1,6 @@
 import { FaUserPlus ,FaUserAlt} from "react-icons/fa";
 import styles from './Navbar.module.css'
-import { Link,useLocation } from "react-router-dom";
+import { Link,useLocation} from "react-router-dom";
 import { useEffect, useState } from "react";
 import Logout from "./Logout";
 import axios from "axios";
@@ -20,6 +20,7 @@ function Navbar() {
     }
     checkLogInStatus();
   },[]);
+  
   return (
         <div className={styles.main}>
             <div className="navbar bg-base-300 flex">
@@ -41,7 +42,7 @@ function Navbar() {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-red-400">
+        className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-gray-900">
         <li><Link to='/property'>My Property</Link></li>
         <li><Link to='/amenity'>My Amenity  </Link></li>
         <li><Link to=''>About EasyStay</Link></li>
@@ -49,8 +50,11 @@ function Navbar() {
     </div>
   </div>
   <div className="navbar-center">
-    <Link to='/' className="btn btn-ghost text-xl tracking-tight  ">EasyStay</Link>
+    <Link to='/' className="btn btn-ghost text-xl tracking-light  ">EasyStay</Link>
   </div>
+
+
+{/* if user is loggedin then show logout button else shows signup and login button */}
 
   {isLoggedIn? <Logout/>:
   <div className="navbar-end ">
@@ -72,8 +76,8 @@ function Navbar() {
     </Link>:''}
   </div>
   }
-            </div>
-          </div>
+    </div>
+  </div>
     )
 }
 

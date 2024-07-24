@@ -2,7 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 
-function Property() {
+function AddProperty() {
     // hold list of properties
     const[property,setProperty] = useState([]);
     // state to hold location
@@ -58,7 +58,7 @@ function Property() {
                     formData.append('image',currentProperty.image);
                 }
                 // now send POST request 
-                const response = await axios.post('http://localhost:4100/properties',formData,{
+                const response = await axios.post('http://localhost:4100/property/add',formData,{
                     headers:{
                         "Content-Type":'multipart/form-data'
                     },
@@ -80,17 +80,15 @@ function Property() {
         }
     }
     
- 
-
     return (
         <>
-            <div className="p-5 text-center bg-slate-400 h-[550px]">
+            <div className="p-5 text-center h-[550px]">
                 <h1 className="text-3xl font-bold">Add a property</h1>
                     <div className="mt-5 grid grid-cols-2 gap-8 ">
                         <div className="col-span-1">
-                            <label htmlFor='input1' className="block font-bold text-black">Name</label>
+                            <label htmlFor='propertyname' className="block font-bold text-black">Name</label>
                             <input 
-                            id="input1"
+                            id="propertyname"
                             name="name"
                             type="text"
                             value={currentProperty.name}
@@ -100,21 +98,21 @@ function Property() {
                             />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor='input2' className="block font-bold text-black">Address</label>
+                            <label htmlFor='propertyaddress' className="block font-bold text-black">Address</label>
                             <input 
-                            id="input2"
+                            id="propertyaddress"
                             name="address"
                             type="text"
                             value={currentProperty.address}
                             onChange={handleChange}
                             className="mt-2 w-full border-gray-300 block rounded-md p-2 shadow-2xl"
-                            placeholder="Property name"
+                            placeholder="Property address"
                             />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor='input3' className="block font-bold text-black">Room Name</label>
+                            <label htmlFor='roomType' className="block font-bold text-black">Room Name</label>
                             <input 
-                            id="input3"
+                            id="roomType"
                             name="roomType"
                             type="text"
                             value={currentProperty.roomType}
@@ -124,9 +122,9 @@ function Property() {
                             />
                         </div>
                         <div className="col-span-1">
-                            <label htmlFor='input4' className="block font-bold text-black">Price</label>
+                            <label htmlFor='Price' className="block font-bold text-black">Price</label>
                             <input 
-                            id="input4"
+                            id="Price"
                             name="price"
                             type="number"
                             value={currentProperty.price}
@@ -136,10 +134,9 @@ function Property() {
                             />
                         </div>
                         <div className="col-span-1 ">
-                            <label htmlFor='input5' className="block font-bold text-black">image</label>
+                            <label htmlFor='propertyImage' className="block font-bold text-black">image</label>
                             <input 
-                            id="input5"
-                            
+                            id="propertyImage"
                             type="file"
                             value={currentProperty.image}
                             onChange={handleFilechange}
@@ -173,5 +170,5 @@ function Property() {
     )
 }
 
-export default Property
+export default AddProperty;
 
