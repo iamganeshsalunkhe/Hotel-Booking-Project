@@ -6,16 +6,19 @@ import Loginpage from "./Pages/Loginpage";
 import Signuppage from "./Pages/Signuppage";
 import Propertypage from "./Pages/Propertypage";
 import "./index.css";
+import AddProperty from "./Components/AddProperty";
 
 function App() {
   return (
     <BrowserRouter>
       <Routes>
         <Route index path="/" element={<Homepage />} />
-        <Route path="/signup" element={<Signuppage />} />
-        <Route path="/login" element={<Loginpage />} />
+        <Route path="signup" element={<Signuppage />} />
+        <Route path="login" element={<Loginpage />} />
+        <Route path="property/*" element={<Propertypage />}>
+          <Route path="add" element={<AddProperty/>}/>
+        </Route>
         <Route path="*" element={<Homepage />} />
-        <Route path="/property" element={<Propertypage />}/>
       </Routes>
       <Toaster />
     </BrowserRouter>

@@ -1,6 +1,7 @@
 // import the required modules
 const { properties,amenities } = require("../models");
 
+
 //add new property(only works when user is logged in)
 exports.addProperty = async (req, res) => {
   try {

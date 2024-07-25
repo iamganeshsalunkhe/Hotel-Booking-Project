@@ -7,7 +7,7 @@ function Footer() {
             <a className="link link-hover">Book a hotel</a>
             <a className="link link-hover">List your property</a>
             <a className="link link-hover">Manage booking</a>
-            <a className="likn link-hover">Mange Properties</a>
+            <a className="link link-hover">Mange Properties</a>
         </nav>
         <nav>
             <h6 className="footer-title">Company</h6>
@@ -25,7 +25,7 @@ function Footer() {
     </footer>
     <footer className="footer  text-base-content border-base-300 border-t px-10 py-4 bg-white">
         <aside className="grid-flow-col items-center">
-            <img src='../../public/Images/Logo.jpg' width={100} height={100}/>
+            <img src='Images/Logo.jpg' width={100} height={100}/>
             <p>
       <span className="text-xl font-bold text-indigo-500">
         EasyStay Ltd.
