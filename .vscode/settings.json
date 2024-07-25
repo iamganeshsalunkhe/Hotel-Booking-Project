@@ -16,14 +16,22 @@
   ],
   "cSpell.words": [
     "Amenitiespage",
+    "amenityname",
+    "Amenitypage",
     "Datepicker",
     "Datepickers",
     "Filechange",
     "getlocation",
+    "Homeproperties",
     "Loggedin",
     "Loginpage",
+    "Profilepage",
+    "propertyaddress",
+    "propertyamenities",
+    "propertyname",
     "Propertypage",
     "signup",
-    "Signuppage"
+    "Signuppage",
+    "timedifference"
   ]
 }

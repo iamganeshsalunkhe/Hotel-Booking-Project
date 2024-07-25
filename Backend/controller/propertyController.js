@@ -1,11 +1,12 @@
 // import the required modules
-const { properties,amenities } = require("../models");
+const { properties} = require("../models");
+
 
 //add new property(only works when user is logged in)
 exports.addProperty = async (req, res) => {
   try {
     // get information as input
-    // get userid from token
+    // get userId from token
     const { userId } = req.user;
 
     // get all info as a input
@@ -36,7 +37,7 @@ exports.addProperty = async (req, res) => {
 exports.updateProperties = async (req, res) => {
   try {
     // get information as input
-    // get userid from token
+    // get userId from token
     const { userId } = req.user;
     // get propertyId from request parameters
     const { propertyId } = req.params;
@@ -74,7 +75,7 @@ exports.updateProperties = async (req, res) => {
 exports.deleteProperty = async (req, res) => {
   try {
     // get information as input
-    // get userid from token
+    // get userId from token
     const { userId } = req.user;
 
     // get propertyId from request parameters
@@ -104,37 +105,16 @@ exports.deleteProperty = async (req, res) => {
 exports.getAllProperties = async (req,res)=>{
     try {
       // get information as input
-      // get userid from token
+      // get userId from token
       const { userId } = req.user;
     
       // fetch all properties using userId
-      const Allproperties = await properties.findAll({where:{userId}});
+      const allProperties = await properties.findAll({where:{userId}});
 
-      // send the success reponse
-      res.status(200).json(Allproperties);
+      // send the success response
+      res.status(200).json(allProperties);
     } catch (error) {
         // if any error occurs
         res.status(500).json({message:"Error while getting all properties"});
     }
 };
-
-// associate amenities with properties
-
-// exports.addAmenitiesToProperty = async(req,res)=>{
-//   const {propertyId} = req.params;
-
-//   const {amenity }= req.body;
-
-//   try {
-//     const Property = await properties.findByPk(propertyId);
-//     if (!Property) return res.status(404).json({message:"Property not found"});
-
-    // find all amenities by Id
-//     const allAmenities = await amenities.findAll({where:{id:amenities}});
-//     if (allAmenities.length !== amenity.length){  
-//         return res.status(404).json({message:"One or more amenities not found"})
-//     }
-//   } catch (error) {
-    
-//   }
-// }

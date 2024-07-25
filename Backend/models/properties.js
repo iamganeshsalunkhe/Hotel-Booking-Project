@@ -41,7 +41,11 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       roomType: DataTypes.STRING,
       price: DataTypes.INTEGER,
-      image:DataTypes.STRING
+      image:
+      {
+        type:DataTypes.BLOB('long'),
+        allowNull:true
+      }
     },
     {
       sequelize,

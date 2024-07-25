@@ -1,5 +1,5 @@
 
-import homeImage from '../../public/Images/Home.jpg';
+import homeImage from '/Images/Home.jpg';
 function Home() {
     
 

@@ -21,14 +21,15 @@ module.exports = {
       address: {
         type: Sequelize.STRING
       },
-      roomtype: {
+      roomType: {
         type: Sequelize.STRING
       },
       price: {
         type: Sequelize.INTEGER
       },
       image:{
-        type:Sequelize.STRING
+        type:Sequelize.BLOB('long'),
+        allowNull:true
       }
     });
   },
