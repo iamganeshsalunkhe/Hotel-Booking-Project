@@ -6,14 +6,17 @@ function Card({ item }) {
         <figure>
           <img src={item.image} alt="property1" />
         </figure>
-        <div className="card-body">
+        <div className="card-body ">
           <h2 className="card-title text-center font-bold">
             {item.name}
             {/* <div className="badge badge-secondary">TRENDING</div> */}
           </h2>
-          <p className="font-medium">{item.roomType}</p>
+          <p className="font-medium ">Room name: {item.roomType}</p>
           <div>
             <p className="font-medium">Price: {item.price}/Night</p>
+            <p className="font-medium">Address: {item.address}</p>
+            <p className="font-medium">City: {item.locationId}</p>
+
           </div>
           <div className="card-actions justify-end">
             <div className="">
