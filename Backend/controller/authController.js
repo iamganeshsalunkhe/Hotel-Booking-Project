@@ -56,14 +56,15 @@ exports.login = async(req,res) =>{
         if (!checkPassword) return res.status(400).json({message:"Invalid password"});
 
 
-        // generate token if user have correcr credentials
+        // generate token if user have correct credentials
         const token= generateAuthToken(user);
-        res.cookie('token',token,{
+        res.cookie("token",token,{
             httpOnly:true,
-            sameSite:'Strict',
-            maxAge:3600000 // 1 hour
-        })
-        res.send("Logged in Successfully");
+            maxAge:3600000, // 1-hour
+            secure:false,
+            sameSite:'Lax'
+            })
+        res.status(200).json({message:"Logged in Successfully"});
 
     } catch (error) {
         // if any error occurs
@@ -71,6 +72,10 @@ exports.login = async(req,res) =>{
         res.status(500).json({message:"Error while logging in"});
     }
 };
+// check for user is loggedin or not
+exports.checkUser = async(req,res)=>{
+    res.status(200).json({message:"Token is valid"})
+}
 
 // logout functionality
 

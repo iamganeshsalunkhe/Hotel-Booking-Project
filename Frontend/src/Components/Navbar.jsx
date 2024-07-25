@@ -1,15 +1,29 @@
-import { FaUserPlus } from "react-icons/fa";
-import { FaUserAlt } from "react-icons/fa";
+import { FaUserPlus ,FaUserAlt} from "react-icons/fa";
 import styles from './Navbar.module.css'
-import { Link,useLocation } from "react-router-dom";
+import { Link,useLocation} from "react-router-dom";
+import { useEffect, useState } from "react";
+import Logout from "./Logout";
+import axios from "axios";
 
 
 function Navbar() {
   const location = useLocation();
-    return (
-        <>
-          <div className={styles.main}>
-            <div className="navbar bg-base-300">
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
+  useEffect(()=>{
+    const checkLogInStatus =async ()=>{
+      try {
+        const response = await axios.get('http://localhost:4100/check-token',{withCredentials:true})
+        setIsLoggedIn(response.status === 200)
+      } catch (error) {
+        setIsLoggedIn(false)
+      }
+    }
+    checkLogInStatus();
+  },[]);
+  
+  return (
+        <div className={styles.main}>
+            <div className="navbar bg-base-300 flex">
   <div className="navbar-start">
     <div className="dropdown">
       <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
@@ -28,16 +42,21 @@ function Navbar() {
       </div>
       <ul
         tabIndex={0}
-        className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-red-400">
-        <li><Link to=''>My Profile</Link></li>
-        <li><Link to=''>My   </Link></li>
+        className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-gray-900">
+        <li><Link to='/property'>My Property</Link></li>
+        <li><Link to='/account'>My Account  </Link></li>
         <li><Link to=''>About EasyStay</Link></li>
       </ul>
     </div>
   </div>
   <div className="navbar-center">
-    <Link to='/' className="btn btn-ghost text-xl tracking-tight hover:tracking-wide ">EasyStay</Link>
+    <Link to='/' className="btn btn-ghost text-xl tracking-light  ">HBP</Link>
   </div>
+
+
+{/* if user is loggedin then show logout button else shows signup and login button */}
+
+  {isLoggedIn? <Logout/>:
   <div className="navbar-end ">
     <div>
       {/* if user on other than signup page then show signup icon */}
@@ -56,9 +75,9 @@ function Navbar() {
     </button>
     </Link>:''}
   </div>
-            </div>
-          </div>  
-        </>
+  }
+    </div>
+  </div>
     )
 }
 

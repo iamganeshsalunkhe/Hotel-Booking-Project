@@ -3,7 +3,7 @@ const { users } = require("../models");
 
 module.exports = async (req, res, next) => {
     // getting token
-    const token = req.header("Authorization");
+    const token = req.cookies.token;
     
     // if token not provided
     if (!token) {

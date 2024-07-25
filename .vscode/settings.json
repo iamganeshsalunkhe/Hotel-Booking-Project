@@ -1,17 +1,37 @@
 {
-    "sqltools.connections": [
-        {
-            "mysqlOptions": {
-                "authProtocol": "default",
-                "enableSsl": "Disabled"
-            },
-            "previewLimit": 50,
-            "server": "localhost",
-            "port": 3306,
-            "driver": "MySQL",
-            "name": "localhost",
-            "database": "hbp",
-            "username": "root"
-        }
-    ]
+  "sqltools.connections": [
+    {
+      "mysqlOptions": {
+        "authProtocol": "default",
+        "enableSsl": "Disabled"
+      },
+      "previewLimit": 50,
+      "server": "localhost",
+      "port": 3306,
+      "driver": "MySQL",
+      "name": "localhost",
+      "database": "hbp",
+      "username": "root"
+    }
+  ],
+  "cSpell.words": [
+    "Amenitiespage",
+    "amenityname",
+    "Amenitypage",
+    "Datepicker",
+    "Datepickers",
+    "Filechange",
+    "getlocation",
+    "Homeproperties",
+    "Loggedin",
+    "Loginpage",
+    "Profilepage",
+    "propertyaddress",
+    "propertyamenities",
+    "propertyname",
+    "Propertypage",
+    "signup",
+    "Signuppage",
+    "timedifference"
+  ]
 }
