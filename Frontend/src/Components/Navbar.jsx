@@ -50,7 +50,7 @@ function Navbar() {
     </div>
   </div>
   <div className="navbar-center">
-    <Link to='/' className="btn btn-ghost text-xl tracking-light  ">EasyStay</Link>
+    <Link to='/' className="btn btn-ghost text-xl tracking-light  ">HBP</Link>
   </div>
 
 

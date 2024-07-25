@@ -1,14 +1,14 @@
 import Footer from "../Components/Footer"
 import Home from "../Components/Home"
 import Navbar from "../Components/Navbar"
-import Datepicker from '../Components/Datepicker'
+import SearchFrom from '../Components/SearchForm'
 
 function Homepage() {
     return (
         <div>
             <Navbar/>
             <Home/>
-            <Datepicker/>
+            <SearchFrom/>
             <Footer/>
         </div>
     )
