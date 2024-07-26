@@ -19,6 +19,7 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - MySQL
 - bcrypt (for password hashing)
 - JWT
+- multer
 
 ### Frontend
 - React.js
