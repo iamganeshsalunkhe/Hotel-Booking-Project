@@ -1,7 +1,7 @@
 // import required module
 const express = require('express');
 const bookingController = require('../controller/bookingController');
-const authenticate = require('../middlware/authenticate');
+const authenticate = require('../middleware/authenticate');
 
 // initiate router
 const router = express.Router();

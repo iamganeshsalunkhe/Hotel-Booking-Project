@@ -43,7 +43,7 @@ module.exports = (sequelize, DataTypes) => {
       price: DataTypes.INTEGER,
       image:
       {
-        type:DataTypes.BLOB('long'),
+        type:DataTypes.STRING,
         allowNull:true
       }
     },

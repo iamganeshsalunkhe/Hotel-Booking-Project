@@ -5,6 +5,7 @@ const cors = require('cors');
 const cookieParser = require('cookie-parser');
 const bodyParser = require('body-parser');
 
+
 // configuration of dotenv
 dotenv.config();
 
@@ -22,6 +23,8 @@ app.use(
     credentials:true
   })
 );
+app.use('/uploads',express.static('uploads'));
+
 
 // importing routes
 const authRoute = require('./routes/auth');

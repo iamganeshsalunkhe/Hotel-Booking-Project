@@ -180,7 +180,6 @@ function AddProperty() {
             <input
               id="propertyImage"
               type="file"
-              value={currentProperty.image}
               onChange={handleFilechange}
               className="mt-2 w-full border-gray-300 block bg-white rounded-md p-2 shadow-2xl"
               placeholder="Image"

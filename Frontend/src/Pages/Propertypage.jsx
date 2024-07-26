@@ -26,7 +26,7 @@ function Propertypage() {
     }
 
     return (
-        <div className='bg-slate-300'>
+        <div className='bg-orange-200'>
             <Navbar/>
             <div className='m-2 text-center text-3xl font-bold font-sans  '>
             <h1>Properties listed by you     
@@ -45,7 +45,7 @@ function Propertypage() {
             </div>
 
             <div className='text-center '>
-                <button className='text-2xl bg-indigo-500 rounded-md p-2' 
+                <button className='text-2xl mb-5 bg-indigo-500 rounded-md p-2' 
                 onClick={handleAddButton}
                 >Add 
                 </button>

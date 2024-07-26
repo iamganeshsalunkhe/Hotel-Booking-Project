@@ -1,5 +1,6 @@
 // import the required modules
 const { properties} = require("../models");
+const upload =require('../middleware/multerConfig');
 
 
 //add new property(only works when user is logged in)
@@ -10,7 +11,9 @@ exports.addProperty = async (req, res) => {
     const { userId } = req.user;
 
     // get all info as a input
-    const { locationId, name, address, roomType, price, image } = req.body;
+    const { locationId, name, address, roomType, price } = req.body;
+
+    const image =req.file ? req.file.path :null;
 
     // create a new property
     const newProperty = await properties.create({

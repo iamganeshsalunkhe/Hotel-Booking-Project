@@ -1,14 +1,15 @@
 // import required module
 const express = require('express');
 const propertyController = require('../controller/propertyController');
-const authenticate = require('../middlware/authenticate');
+const authenticate = require('../middleware/authenticate');
+const upload = require('../middleware/multerConfig');
 
 // initiating router
 const router = express.Router();
 
 // define routes
 // add a new property 
-router.post('/property/add',authenticate,propertyController.addProperty);
+router.post('/property/add',upload.single('image'),authenticate,propertyController.addProperty);
 
 // update an existing property
 router.put('/property/:propertyId',authenticate,propertyController.updateProperties);

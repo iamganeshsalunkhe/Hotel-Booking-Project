@@ -2,7 +2,7 @@
 function Card({ item }) {
   return (
     <div>
-      <div className="card bg-base-100 w-96 shadow-xl">
+      <div className="card bg-indigo-400 w-[450px] shadow-xl">
         <figure>
           <img src={item.image} alt="property1" />
         </figure>
