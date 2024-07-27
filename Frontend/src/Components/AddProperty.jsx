@@ -2,6 +2,7 @@
 import { useEffect, useState } from "react";
 import axios from 'axios';
 import toast from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 
 function AddProperty() {
@@ -9,7 +10,7 @@ function AddProperty() {
   // const[property,setProperty] = useState([]);
   // state to hold location
   const [locations, setLocation] = useState([]);
-
+  const navigate = useNavigate();
   const [currentProperty, setCurrentProperty] = useState({
     name: "",
     address: "",
@@ -32,7 +33,7 @@ function AddProperty() {
   function handleFilechange(e) {
     const file = e.target.files[0];
     setCurrentProperty({ ...currentProperty, image: file });
-    console.log("Selected file:", file);
+    // console.log("Selected file:", file);
   }
 
 
@@ -71,9 +72,9 @@ function AddProperty() {
           formData.append("image", currentProperty.image);
         }
         // Log FormData entries
-        for (let pair of formData.entries()) {
-          console.log(pair[0] + ", " + pair[1]);
-        }
+        // for (let pair of formData.entries()) {
+        //   console.log(pair[0] + ", " + pair[1]);
+        // }
 
         // now send POST request
         const response = await axios.post(
@@ -96,6 +97,7 @@ function AddProperty() {
           locationId: "",
         });
         toast.success("Property added successfully.");
+        navigate('/property')
       } catch (error) {
         console.log(error);
         console.error("Error adding a property:", error);
@@ -105,8 +107,8 @@ function AddProperty() {
 
   return (
     <>
-      <div className="p-5 text-center h-[550px]">
-        <h1 className="text-3xl font-bold">Add a property</h1>
+      <div className="p-5 text-center h-[550px] bg-orange-400">
+        <h1 className="text-3xl font-bold border-2 p-4  shadow-lg w-1/2 mx-auto border-black">Add a property</h1>
         <div className="mt-5 grid grid-cols-1 md:grid-cols-2 gap-8 ">
           <div className="col-span-1">
             <label
@@ -203,7 +205,7 @@ function AddProperty() {
           <div className="col-span-2 text-center ">
             <button
               onClick={addProperty}
-              className="bg-green-500  rounded-md p-3 font-semibold hover:bg-green-600"
+              className="bg-green-500  rounded-md p-3  text-white font-semibold hover:bg-green-600"
             >
               Add
             </button>

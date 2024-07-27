@@ -86,7 +86,7 @@ exports.deleteProperty = async (req, res) => {
 
     // find the property using userId and propertyId
     const property = await properties.findOne({
-      where: { userId, propertyId },
+      where: { propertyId },
     });
 
     if (!property)
