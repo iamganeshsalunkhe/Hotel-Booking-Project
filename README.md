@@ -20,6 +20,7 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - bcrypt (for password hashing)
 - JWT
 - multer
+- cors
 
 ### Frontend
 - React.js
@@ -29,14 +30,14 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - react-silk
 - daisyUI
 - axios
-- cors
+
 
 ## Features
 - **Admin and user Authentication**: Admin & users can sign up and log in.
 - **Admin Panel**: Admins can manage their properties.
 - **Customer Panel**: Customers can browse properties and make bookings.
 - **Booking System**: Customers can confirm bookings.
-- **About Page**: About us page.
+
 
 
 
