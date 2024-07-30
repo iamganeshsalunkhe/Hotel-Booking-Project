@@ -47,11 +47,7 @@ function Login() {
       <div>
         <div className="flex min-h-full flex-1 flex-col justify-center px-6 py-12 lg:px-8 ">
           <div className="sm:mx-auto sm:w-full sm:max-w-sm  ">
-            <img
-              alt="Your Company"
-              src="/Images/Logo.jpg"
-              className="mx-auto h-10 w-auto"
-            />
+            <h1 className="text-center text-3xl font-bold text-indigo-600 font-sans">HBP</h1>
             <h2 className="mt-10 text-center text-2xl font-bold leading-9 tracking-tight text-gray-900">
               Login
             </h2>
