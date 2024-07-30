@@ -15,6 +15,7 @@
     }
   ],
   "cSpell.words": [
+    "Addamenitypage",
     "Addpropertypage",
     "Amenitiespage",
     "amenityname",
@@ -24,6 +25,7 @@
     "Editproperty",
     "Editpropertyform",
     "Editpropertypage",
+    "existingamenity",
     "fieldname",
     "Filechange",
     "getlocation",
