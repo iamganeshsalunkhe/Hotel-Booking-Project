@@ -9,10 +9,11 @@ const router = express.Router();
 
 // define routes
 // add a new property 
-router.post('/property/add',upload.single('image'),authenticate,propertyController.addProperty);
+router.post('/property/add',authenticate,upload.single('image'),propertyController.addProperty);
 
 // update an existing property
-router.put('/property/:propertyId',authenticate,propertyController.updateProperties);
+router.put('/property/:propertyId',authenticate,
+    upload.single('image'),propertyController.updateProperties);
 
 // delete a property
 router.delete('/property/:propertyId',authenticate,propertyController.deleteProperty);

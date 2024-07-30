@@ -1,6 +1,7 @@
 // import the required modules
+const { json } = require("sequelize");
 const { properties} = require("../models");
-const upload =require('../middleware/multerConfig');
+// const upload =require('../middleware/multerConfig');
 
 
 //add new property(only works when user is logged in)
@@ -41,35 +42,39 @@ exports.updateProperties = async (req, res) => {
   try {
     // get information as input
     // get userId from token
-    const { userId } = req.user;
+    // const { userId } = req.user;
     // get propertyId from request parameters
     const { propertyId } = req.params;
 
     // get all info as input
-    const { locationId, name, address, roomType, price, image } = req.body;
+    const { name, address, roomType, price } = req.body;
+    const image = req.file ? req.file.path :null; 
+    
 
     // find the property by propertyId and userId
-    const property = await properties.findOne({
-      where: { propertyId, userId },
-    });
+    const property = await properties.findByPk(propertyId);
 
     if (!property)
-      return res.status(404).json({ message: "Property not found" });
+      return res.status(404).json({ message: "Property not found !!!" });
+    
 
     // update the property
 
     await property.update({
-      locationId,
-      name,
-      address,
-      roomType,
-      price,
-      image,
+      name:name || property.name,
+      address:address || property.address,
+      roomType:roomType || property.roomType,
+      price:price !==undefined ?parseFloat(price):property.price,
+      image :image || property.image,
     });
+
+    
+
     // send the updated property as a response
     res.status(200).json({ message: "Property Updated", property });
   } catch (error) {
     // if any error occurs
+    console.log(error);
     res.status(500).json({ message: "Error while updating a property" });
   }
 };
@@ -85,9 +90,7 @@ exports.deleteProperty = async (req, res) => {
     const { propertyId } = req.params;
 
     // find the property using userId and propertyId
-    const property = await properties.findOne({
-      where: { userId, propertyId },
-    });
+    const property = await properties.findByPk(propertyId);
 
     if (!property)
       return res.status(404).json({ message: "Property not found" });

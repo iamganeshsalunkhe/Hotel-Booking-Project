@@ -23,8 +23,8 @@ function Logout() {
   return (
     <div className="navbar-end pr-3">
       <button
-        className="p-2 rounded-lg bg-red-500 font-semibold btn-ghost text-white"
-        onClick={handleLogout}
+        className="p-2 rounded-lg bg-red-500 font-semibold btn-ghost text-white hover:bg-red-600 hover:scale-110"
+        onClick={handleLogout} 
       >
         Logout
       </button>
