@@ -6,8 +6,10 @@ import { useNavigate } from "react-router-dom";
 
 
 function AddProperty() {
-  // hold list of properties
-  // const[property,setProperty] = useState([]);
+  // scroll window to top 
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[]);
   // state to hold location
   const [locations, setLocation] = useState([]);
   const navigate = useNavigate();
@@ -24,10 +26,6 @@ function AddProperty() {
   function handleChange(e) {
     const { name, value } = e.target;
     setCurrentProperty({ ...currentProperty, [name]: value });
-    console.log("Updated property state:", {
-      ...currentProperty,
-      [name]: value,
-    });
   }
 
   function handleFilechange(e) {
@@ -71,11 +69,7 @@ function AddProperty() {
         if (currentProperty.image) {
           formData.append("image", currentProperty.image);
         }
-        // Log FormData entries
-        // for (let pair of formData.entries()) {
-        //   console.log(pair[0] + ", " + pair[1]);
-        // }
-
+        
         // now send POST request
         const response = await axios.post(
           "http://localhost:4100/property/add",

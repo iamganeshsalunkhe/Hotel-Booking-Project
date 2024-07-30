@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-function Card({ item ,onDelete}) {
+function Card({ item ,onEdit,onDelete}) {
   return (
     <div>
       <div className="card bg-indigo-500 w-[450px] shadow-xl text-white">
@@ -9,7 +9,7 @@ function Card({ item ,onDelete}) {
               item.image ||
               "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2904/take-over-a-hotel.png?tr=n-tile"
             }
-            alt="property1"
+            alt="properties"
             className="w-full h-full object-cover"
           />
         </figure>
@@ -26,6 +26,7 @@ function Card({ item ,onDelete}) {
           <div className="card-actions justify-end">
             <div className="">
               <button className=" bg-green-600 p-2 rounded-md text-white"
+              onClick={onEdit}
               >
                 Edit
               </button>
