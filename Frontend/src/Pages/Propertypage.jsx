@@ -4,14 +4,12 @@ import axios from 'axios';
 import Card from '../Components/Card';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Components/Spinner';
-// import Editproperty from '../Components/Editproperty';
 
 function Propertypage() {
   const navigate = useNavigate();
   const [properties, setProperties] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-//   const [editingProperty, setEditingProperty] = useState(null);
 
   useEffect(() => {
     const getProperties = async () => {
@@ -37,13 +35,6 @@ function Propertypage() {
     navigate("edit", { state: { property } });
   }
 
-  // function for handle edit property(changes state of UI)
-  // function handleEditProperty(property){
-  //     setEditingProperty(property)
-  // }
-
-  
-
   // function for delete a property
   async function handleDeleteButton(propertyId) {
     try {
@@ -59,7 +50,7 @@ function Propertypage() {
         );
       }
     } catch (error) {
-      setError(error.response?.data?.message || error.message);
+      setError(error.message);
     }
   }
 
@@ -75,9 +66,11 @@ function Propertypage() {
         {loading ? (
           <Spinner />
         ) : error ? (
-          <h1 className="text-2xl font-semibold text-center text-red-500">
-            Error:{error}
+          <div className='' >
+          <h1 className="text-3xl font-semibold text-center text-red-500">
+            Please login to see your listed properties
           </h1>
+          </div>
         ) : properties.length === 0 ? (
           <h1 className="text-2xl font-semibold text-center">
             You do not have properties listed here.{" "}
@@ -102,13 +95,6 @@ function Propertypage() {
           Add
         </button>
       </div>
-      {/* {editingProperty && (
-        <Editproperty
-          property={editingProperty}
-          onSave={handleSave}
-          onCancel={handleCancel}
-        />
-      )} */}
     </div>
   );
 }   

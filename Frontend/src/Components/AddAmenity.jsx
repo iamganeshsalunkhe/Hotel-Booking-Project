@@ -1,8 +1,11 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import axios from "axios";
 import { useNavigate } from "react-router-dom";
 
 function AddAmenity() {
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  },[]);
   
   const navigate = useNavigate();
   // hold list of amenities

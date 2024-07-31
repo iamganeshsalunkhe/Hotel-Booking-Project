@@ -1,7 +1,5 @@
 // import the required modules
-const { json } = require("sequelize");
 const { properties} = require("../models");
-// const upload =require('../middleware/multerConfig');
 
 
 //add new property(only works when user is logged in)
