@@ -57,8 +57,7 @@ CREATE TABLE users (
 CREATE TABLE amenities (
     amenities_id INT PRIMARY KEY AUTO_INCREMENT,
     name VARCHAR(200),
-    description VARCHAR(300),
-    price INT 
+    description VARCHAR(300)
 );
 
 -- Locations Table: Stores property location details.
@@ -76,6 +75,7 @@ CREATE TABLE property (
     address VARCHAR(255),
     room_type varchar(100),
     price int,
+    isBooked Boolean 
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (locations_id) REFERENCES locations(locations_id)
 );
@@ -112,16 +112,6 @@ CREATE TABLE property_amenities (
     FOREIGN KEY (amenities_id) REFERENCES amenities(amenities_id)
 );
 
--- Payments Table: Stores payment details, linked to users and bookings.
-CREATE TABLE payments (
-    payments_id INT PRIMARY KEY AUTO_INCREMENT,
-    user_id INT, 
-    bookings_id INT,
-    amount INT, 
-    payment_date TIMESTAMP DEFAULT CURRENT_TIMESTAMP,
-    FOREIGN KEY (user_id) REFERENCES users(user_id),
-    FOREIGN KEY (bookings_id) REFERENCES bookings(bookings_id)
-);
 ```
 
 
