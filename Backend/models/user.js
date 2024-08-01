@@ -14,10 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         as: "bookings",
       });
 
-      Users.hasMany(models.payments, {
-        foreignKey: "userId",
-        as: "payments",
-      });
     }
     toJSON() {
       return {

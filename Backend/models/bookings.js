@@ -14,17 +14,6 @@ module.exports = (sequelize, DataTypes) => {
         as: "property",
       });
 
-      Bookings.belongsToMany(models.amenities, {
-        through: models.bookingamenities,
-        foreignKey: "bookingId",
-        otherKey: "amenityId",
-        as: "amenities",
-      });
-
-      Bookings.hasMany(models.payments, {
-        foreignKey: "bookingId",
-        as: "payments",
-      });
     }
   }
 

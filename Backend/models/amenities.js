@@ -11,14 +11,6 @@ module.exports = (sequelize, DataTypes) => {
         otherKey: "propertyId",
         as: "properties",
       });
-
-      // many-to-many association with Bookings
-      Amenities.belongsToMany(models.bookings, {
-        through: models.bookingamenities,
-        foreignKey: "amenityId",
-        otherKey: "bookingId",
-        as: "bookings",
-      });
     }
   }
 

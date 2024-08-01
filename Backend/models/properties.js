@@ -42,7 +42,7 @@ module.exports = (sequelize, DataTypes) => {
       roomType: DataTypes.STRING,
       price: DataTypes.INTEGER,
       isBooked:{
-        type:DataTypes.boolean,
+        type:DataTypes.BOOLEAN,
         defaultValue:false
       },
       image:
