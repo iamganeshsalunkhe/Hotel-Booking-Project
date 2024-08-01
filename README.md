@@ -75,7 +75,7 @@ CREATE TABLE property (
     address VARCHAR(255),
     room_type varchar(100),
     price int,
-    isBooked Boolean 
+    isBooked Boolean,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (locations_id) REFERENCES locations(locations_id)
 );
@@ -91,16 +91,6 @@ CREATE TABLE bookings (
     number_of_guests INT,
     FOREIGN KEY (user_id) REFERENCES users(user_id),
     FOREIGN KEY (property_id) REFERENCES property(property_id)
-);
-
--- Booking_Amenities Table: Junction table to link bookings with selected amenities.
-CREATE TABLE booking_amenities (
-    bookings_id INT, 
-    amenities_id INT,
-    PRIMARY KEY (bookings_id, amenities_id),
-    price INT,
-    FOREIGN KEY (bookings_id) REFERENCES bookings(bookings_id),
-    FOREIGN KEY (amenities_id) REFERENCES amenities(amenities_id)
 );
 
 -- Property_Amenities Table: Junction table to link properties with available amenities.
