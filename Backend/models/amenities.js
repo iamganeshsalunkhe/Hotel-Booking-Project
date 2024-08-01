@@ -30,8 +30,7 @@ module.exports = (sequelize, DataTypes) => {
         autoIncrement: true,
       },
       name: DataTypes.STRING,
-      description: DataTypes.STRING,
-      price: DataTypes.INTEGER,
+      description: DataTypes.STRING
     },
     {
       sequelize,

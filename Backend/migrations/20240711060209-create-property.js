@@ -27,6 +27,10 @@ module.exports = {
       price: {
         type: Sequelize.INTEGER
       },
+      isBooked:{
+        type:Sequelize.BOOLEAN,
+        defaultValue:false
+      },
       image:{
         type:Sequelize.STRING,
         allowNull:true
