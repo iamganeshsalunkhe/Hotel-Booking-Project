@@ -72,6 +72,26 @@ exports.login = async(req,res) =>{
         res.status(500).json({message:"Error while logging in"});
     }
 };
+
+exports.forgotPassword = async (req,res)=>{
+    try
+    {
+        const {email,password}= req.body;
+
+        const user = await users.findOne({where:{email}})
+
+        if (!user)return res.status(404).json({message:"User not found"})
+        
+
+        const hashPassword = await bcryptjs.hash(password,10);
+        user.password = hashPassword;
+        await user.save();
+        res.status(200).json({message:"Password changed successfully"})
+    } catch(error){
+            res.status(400).json({message:"Error updating password"})
+    }
+}
+
 // check for user is loggedin or not
 exports.checkUser = async(req,res)=>{
     res.status(200).json({message:"Token is valid"})

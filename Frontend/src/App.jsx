@@ -12,6 +12,7 @@ import Editpropertypage from "./Pages/Editpropertypage";
 import Amenitypage from './Pages/Amenitypage';
 
 import Addamenitypage from "./Pages/Addamenitypage";
+import Forgotpasswordpage from "./Pages/Forgotpasswordpage";
 
 function App() {
   return (
@@ -20,6 +21,7 @@ function App() {
         <Route index path="/" element={<Homepage />} />
         <Route path="signup" element={<Signuppage />} />
         <Route path="login" element={<Loginpage />} />
+        <Route path="/forgot-password" element={<Forgotpasswordpage/>}/>
         <Route path="property" element={<Propertypage />}/>
         <Route path="property/add" element={<Addpropertypage   />}/>
         <Route path="property/edit" element={<Editpropertypage/>}/>
