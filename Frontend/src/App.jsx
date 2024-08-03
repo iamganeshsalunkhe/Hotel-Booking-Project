@@ -8,8 +8,10 @@ import Propertypage from "./Pages/Propertypage";
 import "./index.css";
 import Profilepage from "./Pages/Profilepage";
 import Addpropertypage from "./Pages/Addpropertypage";
-// import Editproperty from "./Components/Editproperty";
 import Editpropertypage from "./Pages/Editpropertypage";
+import Amenitypage from './Pages/Amenitypage';
+
+import Addamenitypage from "./Pages/Addamenitypage";
 
 function App() {
   return (
@@ -21,6 +23,8 @@ function App() {
         <Route path="property" element={<Propertypage />}/>
         <Route path="property/add" element={<Addpropertypage   />}/>
         <Route path="property/edit" element={<Editpropertypage/>}/>
+        <Route path="amenity" element={<Amenitypage/>}/>     
+        <Route path="amenity/add" element={<Addamenitypage/>}/>   
         <Route path="account" element={<Profilepage/>}/>
         <Route path="*" element={<Homepage />} />
       </Routes>

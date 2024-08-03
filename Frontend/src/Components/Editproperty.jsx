@@ -124,7 +124,7 @@ function Editproperty({ property, onSave, onCancel }) {
       <div className="bg-zinc-900 text-white h-fit">
         <p>
           **You can&apos;t change location of the property. If you want to
-          change then delete property and add new one.
+          change then delete the property and add new one.
         </p>
       </div>
     </div>

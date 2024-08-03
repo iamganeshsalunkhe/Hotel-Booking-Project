@@ -6,7 +6,6 @@ function Card({ item ,onEdit,onDelete}) {
         <figure>
           <img
             src={
-              item.image ||
               "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2904/take-over-a-hotel.png?tr=n-tile"
             }
             alt="properties"

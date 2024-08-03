@@ -45,7 +45,7 @@ function Navbar() {
         className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-gray-900">
         <li><Link to='/property'>My Property</Link></li>
         <li><Link to='/account'>My Account  </Link></li>
-        <li><Link to=''>About EasyStay</Link></li>
+        <li><Link to='/amenity'>Manage Amenities</Link></li>
       </ul>
     </div>
   </div>
@@ -59,7 +59,7 @@ function Navbar() {
   {isLoggedIn? <Logout/>:
   <div className="navbar-end ">
     <div>
-      {/* if user on other than signup page then show signup icon */}
+      {/* if user on other than signup page then show signup icon  when user is not loggedin */}
       {location.pathname !=='/signup'?
       <Link to='/signup'>
     <button className="btn btn-ghost btn-circle bg-white hover:scale-110" >
@@ -67,7 +67,7 @@ function Navbar() {
     </button>
       </Link>:''}
     </div>
-    {/* if user on other than signup page then show signup icon */}
+    {/* if user on other than login page then show login icon */}
     {location.pathname !== '/login'?
     <Link to='/login'>
     <button className="btn btn-ghost btn-circle bg-white mx-2">
