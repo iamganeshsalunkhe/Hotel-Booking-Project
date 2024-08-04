@@ -91,14 +91,33 @@ exports.forgotPassword = async (req,res)=>{
             res.status(400).json({message:"Error updating password"})
     }
 }
+// get user role
+// exports.getUserData = async (req,res)=>{
+//     try {
+//       // get userId from token
+//       const { userId } = req.user;
+
+//       // find the user by userId
+//       const user = await users.findByPk(userId);
+
+//       if (!user) return res.json("error");
+//       // send the user profile as response
+//       res.status(200).json(user);
+//     } catch (error) {
+//       // if any error occurs
+
+//       res.status(500).json({ message: "Error while getting profile" });
+//     }
+// }
 
 // check for user is loggedin or not
 exports.checkUser = async(req,res)=>{
     res.status(200).json({message:"Token is valid"})
 }
 
-// logout functionality
 
+
+// logout functionality
 exports.logout= async (req,res)=>{
     res.clearCookie('token');
     res.send("Logged out successfully")

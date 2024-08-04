@@ -1,9 +1,20 @@
 import { useNavigate } from "react-router-dom";
 import axios from "axios";
 import toast from "react-hot-toast";
+import { useContext, useEffect, useRef } from "react";
+import { AuthContext } from "../Context/AuthContext";
 
 function Logout() {
   const navigate = useNavigate();
+  const focusElementRef = useRef();
+  const {setUser} = useContext(AuthContext);
+
+
+  useEffect(()=>{
+    if (focusElementRef.current){
+      focusElementRef.current.focus();
+    }
+  },[]);
 
   async function handleLogout() {
     try {
@@ -12,7 +23,7 @@ function Logout() {
         {},
         { withCredentials: true }
       );
-      console.log("logged out");
+      setUser(null);
       toast.success("Logged out successfully");
       navigate("/login");
     } catch (error) {
@@ -28,6 +39,11 @@ function Logout() {
       >
         Logout
       </button>
+    {/* a hidden input tag to receive focus */}
+    <input ref={focusElementRef}
+    style={{position:'absolute',left:'-9999px'}}
+    aria-hidden='true'
+    />
     </div>
   );
 }
