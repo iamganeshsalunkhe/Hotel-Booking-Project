@@ -1,16 +1,15 @@
-/* eslint-disable no-unused-vars */
 import { AiFillHome } from "react-icons/ai";
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
 import {  useContext, useEffect, useState } from "react";
 import Logout from "./Logout";
 import axios from "axios";
-import { AuthContext } from "../Context/AuthContext";
+import { AuthContext} from "../Context/AuthContext";
 
 function Navbar() {
   const location = useLocation();
+  const {user} = useContext(AuthContext) ;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const {user,setUser} = useContext(AuthContext) || {} ;
 
   // console.log(user.role)
   useEffect(() => {
@@ -25,7 +24,7 @@ function Navbar() {
       }
     };
     checkLogInStatus();
-  }, [user]);
+  }, []);
 
   return (
     <div className={styles.main}>
@@ -102,7 +101,7 @@ function Navbar() {
         {/* if user is loggedin then show logout button else shows signup and login button */}
 
         {isLoggedIn ? (
-          <Logout />
+          <Logout  />
         ) : (
           <div className="navbar-end  flex ">
             <div className="">

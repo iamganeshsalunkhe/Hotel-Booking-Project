@@ -1,13 +1,13 @@
 import { useNavigate } from "react-router-dom";
-import axios from "axios";
+// import axios from "axios";
 import toast from "react-hot-toast";
-import { useContext, useEffect, useRef } from "react";
-import { AuthContext } from "../Context/AuthContext";
+import {  useContext, useEffect, useRef } from "react";
+import { AuthContext} from "../Context/AuthContext";
 
 function Logout() {
   const navigate = useNavigate();
   const focusElementRef = useRef();
-  const {setUser} = useContext(AuthContext);
+  const {logout} = useContext(AuthContext);
 
 
   useEffect(()=>{
@@ -17,18 +17,18 @@ function Logout() {
   },[]);
 
   async function handleLogout() {
-    try {
-      await axios.post(
-        "http://localhost:4100/logout",
-        {},
-        { withCredentials: true }
-      );
-      setUser(null);
+    // try {
+    //   await axios.post(
+    //     "http://localhost:4100/logout",
+    //     {},
+    //     { withCredentials: true }
+    //   );
+      await logout();
       toast.success("Logged out successfully");
       navigate("/login");
-    } catch (error) {
-      console.error(error);
-    }
+      // } catch (error) {
+      //   console.error(error);
+      // }
   }
 
   return (

@@ -9,7 +9,7 @@ import "./index.css";
 import Profilepage from "./Pages/Profilepage";
 import Addpropertypage from "./Pages/Addpropertypage";
 import Editpropertypage from "./Pages/Editpropertypage";
-import Amenitypage from './Pages/Amenitypage';
+import Amenitypage from "./Pages/Amenitypage";
 import Addamenitypage from "./Pages/Addamenitypage";
 import Forgotpasswordpage from "./Pages/Forgotpasswordpage";
 import ProtectedRoute from "./Components/ProtectedRoute";
@@ -43,9 +43,32 @@ function App() {
             }
           />
 
-          <Route path="property/edit" element={<Editpropertypage />} />
-          <Route path="amenity" element={<Amenitypage />} />
-          <Route path="amenity/add" element={<Addamenitypage />} />
+          <Route
+            path="property/edit"
+            element={
+              <ProtectedRoute role="admin">
+                <Editpropertypage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="amenity"
+            element={
+              <ProtectedRoute>
+                <Amenitypage />
+              </ProtectedRoute>
+            }
+          />
+
+          <Route
+            path="amenity/add"
+            element={
+              <ProtectedRoute>
+                <Addamenitypage />
+              </ProtectedRoute>
+            }
+          />
           <Route path="account" element={<Profilepage />} />
           <Route path="*" element={<Homepage />} />
         </Routes>

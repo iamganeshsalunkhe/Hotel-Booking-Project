@@ -45,8 +45,8 @@ function AddAmenity() {
   }
 
   return (
-    <div className="p-5 text-center bg-slate-400 h-[550px]">
-      <h1 className="text-3xl font-bold">Add an amenity</h1>
+    <div className="p-5 text-center bg-zinc-600 h-[550px]">
+      <h1 className="text-3xl font-bold text-white">Add an amenity</h1>
       <div className="mt-5 grid grid-cols-2 gap-8 ">
         <div className="col-span-1">
           <label htmlFor="amenityname" className="block font-bold text-black">
