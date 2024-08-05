@@ -82,7 +82,7 @@ function Forgotpassword() {
                   htmlFor="email"
                   className="block text-sm font-medium leading-6 text-gray-900"
                 >
-                  Email address
+                  Email address :
                 </label>
                 <div className="mt-2">
                   <input
@@ -106,7 +106,7 @@ function Forgotpassword() {
                     htmlFor="password"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Password
+                    New Password :
                   </label>
                 </div>
 
@@ -132,14 +132,14 @@ function Forgotpassword() {
 
 
 
-              {/* fir confirm password */}
+              {/* for confirm password */}
               <div>
                 <div className="flex items-center justify-between">
                   <label
                     htmlFor="confirm-password"
                     className="block text-sm font-medium leading-6 text-gray-900"
                   >
-                    Confirm Password
+                    Confirm new password :
                   </label>
                 </div>
 

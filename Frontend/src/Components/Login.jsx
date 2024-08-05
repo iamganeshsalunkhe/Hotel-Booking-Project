@@ -1,13 +1,15 @@
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import { FaRegEye, FaRegEyeSlash } from "react-icons/fa";
 import { Link, useNavigate } from "react-router-dom";
 import toast from "react-hot-toast";
 import axios from "axios";
+import { AuthContext} from "../Context/AuthContext";
 
 axios.defaults.withCredentials = true;
 
 function Login() {
   const navigate = useNavigate();
+  const {login}= useContext(AuthContext);
 
   // state for email
   const [email, setEmail] = useState("");
@@ -36,24 +38,30 @@ function Login() {
       email,
       password,
     };
-    await axios
-      .post("http://localhost:4100/login", userInfo, {
-        headers: {
-          "Content-Type": "application/json",
-        },
-        withCredential: true,
-      })
-      .then((res) => {
-        if (res.data) {
-          toast.success("Loggedin Successfully");
-          navigate("/");
-        }
-      })
-      .catch((err) => {
-        if (err.response) {
-          toast.error("Error :" + err.response.data.message);
-        }
-      });
+    // try {
+    //   const res= await axios.post("http://localhost:4100/login", userInfo, {
+    //     headers: {
+    //       "Content-Type": "application/json",
+    //     },
+    //     withCredential: true,
+    //   });
+    //     if (res.data) {
+    //       setUser(res.data);
+    //       toast.success("Loggedin Successfully");
+    //       navigate("/");
+    //     }
+    //   } catch(err) {
+    //     if (err.response) {
+    //       toast.error("Error :" + err.response.data.message);
+    //     }
+    //   }
+    const success = await login(userInfo);
+    if (success){
+      toast.success("Logged in Successfully");
+      navigate('/')
+    }else{
+      toast.error("Error while logging in")
+    }
   }
   return (
     <>

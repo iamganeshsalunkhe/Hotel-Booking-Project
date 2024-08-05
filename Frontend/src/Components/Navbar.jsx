@@ -1,13 +1,17 @@
 import { AiFillHome } from "react-icons/ai";
 import styles from "./Navbar.module.css";
 import { Link, useLocation } from "react-router-dom";
-import { useEffect, useState } from "react";
+import {  useContext, useEffect, useState } from "react";
 import Logout from "./Logout";
 import axios from "axios";
+import { AuthContext} from "../Context/AuthContext";
 
 function Navbar() {
   const location = useLocation();
+  const {user} = useContext(AuthContext) ;
   const [isLoggedIn, setIsLoggedIn] = useState(false);
+
+  // console.log(user.role)
   useEffect(() => {
     const checkLogInStatus = async () => {
       try {
@@ -51,19 +55,40 @@ function Navbar() {
               tabIndex={0}
               className="menu menu-sm dropdown-content text-white rounded-box z-[1] mt-3 w-52 p-2 shadow bg-gray-900"
             >
-              <li>
-                <Link to="/property">My Property</Link>
-              </li>
-              <li>
-                <Link to="/account">My Account </Link>
-              </li>
-              <li>
-                <Link to="/amenity">Manage Amenities</Link>
-              </li>
+              {/*  conditionally render when logged user is admin */}
+
+              {user && user.role === "admin" && (
+                <>
+                  <li>
+                    <Link to="/property">Manage  Property</Link>
+                  </li>
+                  <li>
+                    <Link to="/amenity">Manage Amenities</Link>
+                  </li>
+                  <li>
+                    <Link to="/booking">Manage Bookings</Link>
+                  </li>
+                  <li>
+                    <Link to="/account">My Account </Link>
+                  </li>
+                </>
+              )}
+
+              {user && user.role === "customer" && (
+                <>
+                  <li>
+                    <Link to="/My booking">My Bookings</Link>
+                  </li>
+
+                  <li>
+                    <Link to="/account">My Account</Link>
+                  </li>
+                </>
+              )}
             </ul>
           </div>
           <Link to="/" className="text-xl p-2 font-semibold">
-            <AiFillHome/>
+            <AiFillHome />
           </Link>
         </div>
 
@@ -76,7 +101,7 @@ function Navbar() {
         {/* if user is loggedin then show logout button else shows signup and login button */}
 
         {isLoggedIn ? (
-          <Logout />
+          <Logout  />
         ) : (
           <div className="navbar-end  flex ">
             <div className="">
