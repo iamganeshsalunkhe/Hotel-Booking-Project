@@ -1,6 +1,7 @@
 /* eslint-disable no-unused-vars */
 import axios from "axios";
 import { useEffect, useState } from "react";
+import toast from "react-hot-toast";
 import { useNavigate } from "react-router-dom";
 
 function Profile() {
@@ -42,11 +43,10 @@ function Profile() {
       .then((res) => {
         setUser(res.data);
         setIsEditing(false);
+        toast.success("Information updated successfully!!")
       })
       .catch((error) => {
-        console.error(
-          console.error("Error while updating the profile:", error)
-        );
+        console.error("Error while updating the profile:", error)
       });
   };
 
@@ -61,6 +61,7 @@ function Profile() {
       axios
         .delete("http://localhost:4100/profile/delete")
         .then((response) => {
+          toast.success("Account Deleted Successfully!!")
           navigate('/')
         })
         .catch((error) => {
@@ -81,11 +82,11 @@ function Profile() {
     <div>
       {isEditing ? (
           <div className="text-3xl bg-stone-600">
-          <h2 className="text-center">Edit Profile</h2>
+          <h2 className="text-center text-white mb-5 border-1 w-1/2 mx-auto p-2">Edit Profile</h2>
 
           <form className="grid grid-cols-1 ml-24">
             <div>
-            <label>
+            <label className="text-white">
               Username :
               <input
                 type="text"
@@ -96,7 +97,7 @@ function Profile() {
                 />
             </label>
             </div>  
-            <label>
+            <label className="text-white">
               Email :
               <input
                 type="email"

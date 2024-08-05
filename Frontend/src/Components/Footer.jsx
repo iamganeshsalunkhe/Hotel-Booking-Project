@@ -1,26 +1,49 @@
+import {Link} from'react-router-dom';
 function Footer() {
   return (
     <div>
       <footer className="footer  p-10 text-black font-medium justify-between bg-gray-200 mt-3">
         <nav>
           <h6 className="footer-title text-black">Services</h6>
-          <a className="link link-hover">Book a hotel</a>
-          <a className="link link-hover">List your property</a>
-          <a className="link link-hover">Manage booking</a>
-          <a className="link link-hover">Mange Properties</a>
+          <Link to="testfooter" className="link link-hover">
+            Book a hotel
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            List your property
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Manage booking
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Mange Properties
+          </Link>
         </nav>
         <nav>
           <h6 className="footer-title">Company</h6>
-          <a className="link link-hover">About us</a>
-          <a className="link link-hover">Contact</a>
-          <a className="link link-hover">Jobs</a>
-          <a className="link link-hover">Press kit</a>
+          <Link to="testfooter" className="link link-hover">
+            About us
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Contact
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Jobs
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Press kit
+          </Link>
         </nav>
         <nav>
           <h6 className="footer-title">Legal</h6>
-          <a className="link link-hover">Terms of use</a>
-          <a className="link link-hover">Privacy policy</a>
-          <a className="link link-hover">Cookie policy</a>
+          <Link to="testfooter" className="link link-hover">
+            Terms of use
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Privacy policy
+          </Link>
+          <Link to="testfooter" className="link link-hover">
+            Cookie policy
+          </Link>
         </nav>
       </footer>
       <footer className="footer  text-base-content border-base-300 border-t px-10 py-4 bg-white">
