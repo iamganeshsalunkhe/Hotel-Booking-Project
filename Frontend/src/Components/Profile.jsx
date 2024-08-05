@@ -106,16 +106,7 @@ function Profile() {
                 className="m-2 w-2/4 border-gray-500  rounded-md shadow-md bg-stone-400 p-1"
                 />
             </label>
-            <label>
-              Password :
-              <input
-                type="password"
-                name="password"
-                value={formData.password}
-                onChange={handleChange}
-                className="m-2 w-2/4 border-gray-500  rounded-md shadow-md bg-stone-400 p-1"
-              />
-            </label>
+            
           </form>
           <button
             type="button"

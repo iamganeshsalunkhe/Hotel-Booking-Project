@@ -46,9 +46,9 @@ function Amenitypage() {
     return (
       <div>
         <Navbar />
-        <div className="">
-          <div className="m-2 text-center   border-2 w-1/2 mx-auto bg-gray-600 text-white p-2 rounded-md">
-            <h1 className="text-3xl font-bold font-sans">Amenities </h1>
+        <div className="bg-slate-500 ">
+          <div className=" text-center    border-2 w-1/2 mx-auto bg-gray-600 text-white p-2 rounded-md">
+            <h1 className="text-3xl font-bold font-sans ">Available Amenities </h1>
           </div>
           <div className="mt-12 grid grid-cols-3">
             {amenities.map((amenity) => (

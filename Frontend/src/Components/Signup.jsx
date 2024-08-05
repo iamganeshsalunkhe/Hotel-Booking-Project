@@ -1,5 +1,5 @@
 import axios from "axios";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import toast from "react-hot-toast";
 import { FaRegEye } from "react-icons/fa";
 import { FaRegEyeSlash } from "react-icons/fa";
@@ -14,15 +14,38 @@ function Signup() {
     const [email, setEmail] = useState('');
     // state for password
     const[password,setPassword]= useState('');
+    // state for confirm password
+    const [confirmPassword, setConfirmPassword]= useState("");
+    
     // state for role
     const [role, setRole]= useState('customer');
     
     // change the state of password (visibility)
     const [isPasswordVisible, setIsPasswordVisible] = useState(false);
 
-    // handle password visibilty
+    // change the state of confirm password (visibility)
+    const [isConfirmPasswordVisible, setIsConfirmPasswordVisible] = useState(false);
+
+    // check user filled all fields
+    const [isFormValid,setIsFormValid] = useState(false);
+
+
+    useEffect(()=>{
+      setIsFormValid(
+        username !== "" && 
+        email !== "" && 
+        password !== "" && 
+        confirmPassword !== "" && 
+        password === confirmPassword
+      );
+    },[username,email,password,confirmPassword]);
+
+    // handle password visibility
     function handlePassword(){
         setIsPasswordVisible((prevState) =>!prevState);
+    }
+    function handleConfirmPassword(){
+      setIsConfirmPasswordVisible((prevState)=>!prevState)
     }
 
     async function onSubmit(event){
@@ -132,6 +155,37 @@ function Signup() {
                       {isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
                     </div>
                   </div>
+
+                  {/* check for same password */}
+                  <div>
+
+                  <div className="flex items-center justify-between">
+                    <label
+                      htmlFor="password"
+                      className="block text-sm font-bold leading-6 text-gray-900"
+                    >
+                     Confirm Password
+                    </label>
+                  </div>
+                  <div className="mt-2 relative">
+                    <input
+                      id="confirm-password"
+                      name="confirm-password"
+                      type={isConfirmPasswordVisible ? "text" : "password"}
+                      value={confirmPassword}
+                      onChange={(e) => setConfirmPassword(e.target.value)}
+                      required
+                      autoComplete="off"
+                      className="block w-full rounded-md border-0 py-1.5 p-2 text-gray-900 shadow-sm ring-1 ring-inset ring-gray-300 placeholder:text-gray-400 focus:ring-2 focus:ring-inset focus:ring-indigo-600 sm:text-sm sm:leading-6 pr-12"
+                    />
+                    <div
+                      className="absolute right-2 top-1/2 transform -translate-y-1/2 text-gray-400 cursor-pointer mr-1"
+                      onClick={handleConfirmPassword}
+                      >
+                      {isPasswordVisible ? <FaRegEyeSlash /> : <FaRegEye />}
+                    </div>
+                  </div>
+                </div>
                 </div>
 
                 {/* For getting role for user */}
@@ -158,7 +212,9 @@ function Signup() {
                 <div>
                   <button
                     type="submit"
-                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600"
+                    className="flex w-full justify-center rounded-md bg-indigo-600 px-3 py-1.5 text-sm font-semibold leading-6 text-white shadow-sm hover:bg-indigo-500 focus-visible:outline focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-indigo-600
+                    disabled:bg-gray-600"
+                    disabled={!isFormValid}
                   >
                     Sign up
                   </button>
