@@ -10,8 +10,7 @@ function Profile() {
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     username: "",
-    email: "",
-    password: "",
+    email: ""
   });
 
   useEffect(() => {
@@ -22,7 +21,6 @@ function Profile() {
         setFormData({
           username: res.data.username,
           email: res.data.email,
-          password: "",
         });
       })
       .catch((error) => {

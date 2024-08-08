@@ -1,16 +1,22 @@
 /* eslint-disable react/prop-types */
-function Card({ item ,onEdit,onDelete}) {
+function Card({ item}) {
   return (
     <div>
-      <div className="card bg-indigo-500 w-[450px] shadow-xl text-white">
-        <figure>
+      <div className="card bg-green-500 w-[300px] shadow-xl text-white">
+        <figure className="relative">
           <img
             src={
               "https://ad962edbae8ba7b03b7f-d10007df79b5b7a4e475a291e50a08cf.ssl.cf3.rackcdn.com/2904/take-over-a-hotel.png?tr=n-tile"
             }
             alt="properties"
-            className="w-full h-full object-cover"
+            className="w-full h-1/2 object-cover"
           />
+          <div className="absolute top-2 left-2 bg-red-600 text-white text-sm px-2 py-1 rounded">
+             2 Adults/room
+          </div>
+          <div className="absolute bottom-2 right-2 bg-red-600 text-white text-sm px-1 rounded py-1">
+            Only 1 room left
+          </div>
         </figure>
         <div className="card-body ">
           <h2 className="card-title text-center font-bold">
@@ -22,20 +28,8 @@ function Card({ item ,onEdit,onDelete}) {
             <p className="font-medium">Address: {item.address}</p>
             </div>
           <div className="card-actions justify-end">
-            <div className="">
-              <button className=" bg-green-600 p-2 rounded-md text-white"
-              onClick={onEdit}
-              >
-                Edit
-              </button>
-            </div>
-            <div className="">
-              <button className="bg-red-600 p-2 rounded-md text-white"
-              onClick={()=>onDelete(item.propertyId)}
-              >
-                Delete
-              </button>
-            </div>
+            <button className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
+            
           </div>
         </div>
       </div>

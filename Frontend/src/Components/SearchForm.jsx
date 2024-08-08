@@ -1,19 +1,20 @@
 /* eslint-disable react/prop-types */
 
-import { useEffect, useState } from 'react';
-import Datepicker from 'react-datepicker';
-import 'react-datepicker/dist/react-datepicker.css';
+import { useEffect, useState } from "react";
+import Datepicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 // import { format } from 'date-fns';
-import axios from 'axios';
+import axios from "axios";
+import CardForHomeProperties from "../Components/CardForHomeProperties";
 
-
-
-function SearchForm({onSearch}) {
+function SearchForm() {
   // states for checkInDate and checkOutDate
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState(null);
-  const [location,setLocation] = useState([]);
-  const [selectedLocation, setSelectedLocation] = useState('');
+  const [location, setLocation] = useState([]);
+  const [selectedLocation, setSelectedLocation] = useState("");
+  const [properties, setProperties] = useState([]);
+  const [searchInitiated, setSearchInitiated] = useState(false);
 
   // fetch locations from database
   useEffect(() => {
@@ -31,26 +32,28 @@ function SearchForm({onSearch}) {
 
   // on when user click on search button
   const handleSearch = async () => {
-    if (checkInDate && checkOutDate && selectedLocation) {
-      try {
-        const res = await axios.get("http://localhost:4100/properties/search", {
-          params: {
-            checkInDate: checkInDate.toISOString(),
-            checkOutDate: checkOutDate.toISOString(),
-            locationId:selectedLocation
-          },
-        });
-        onSearch(res.data);
-      } catch (error) {
-        console.error("Error searching properties:", error);
-      }
+    setSearchInitiated(true);
+    if (!selectedLocation) {
+      alert("Please select a location");
+      return;
+    }
+    try {
+      const res = await axios.get("http://localhost:4100/getProperties", {
+        params: {
+          locationId: selectedLocation,
+          isBooked: false,
+        },
+      });
+      setProperties(res.data);
+    } catch (error) {
+      console.error(error);
     }
   };
 
   return (
     <div className="flex flex-col items-center">
       <div className="flex space-x-4  mt-2 p-2">
-        <div className='mt-2'>
+        <div className="mt-2">
           <label className=" mx-2 text-m font-medium text-gray-700">
             Check-in
           </label>
@@ -69,7 +72,7 @@ function SearchForm({onSearch}) {
             className="border rounded px-2 py-1"
           />
         </div>
-        <div className='mt-2'>
+        <div className="mt-2">
           <label className="mx-2  text-m font-medium text-gray-700">
             Check-out
           </label>
@@ -107,10 +110,19 @@ function SearchForm({onSearch}) {
       >
         Search
       </button>
+
+      {/* display properties  */}
+      <div className="mt-4 grid grid-cols-3 gap-4">
+        {searchInitiated && properties.length === 0 ? (
+          <h2>No properties available for selected location</h2>
+        ) : (
+          properties.map((property) => (
+            <CardForHomeProperties key={property.propertyId} item={property} />
+          ))
+        )}
+      </div>
     </div>
   );
 }
 
-
-
-export default SearchForm
+export default SearchForm;
