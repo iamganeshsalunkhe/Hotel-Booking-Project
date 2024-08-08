@@ -7,7 +7,7 @@ exports.makeBooking = async(req,res)=>{
         // get data from user
         const {userId} = req.user;
 
-        const {propertyId, checkInDate, checkOutDate, numberOfGuests} = req.body;
+        const {propertyId, checkInDate, checkOutDate} = req.body;
 
         // create a booking
         const newbooking = await bookings.create({
@@ -15,7 +15,8 @@ exports.makeBooking = async(req,res)=>{
             propertyId,
             checkInDate,
             checkOutDate,
-            numberOfGuests
+            status:'confirmed',
+            numberOfGuests:2
         });
 
         // response on success
@@ -48,7 +49,6 @@ exports.getUserBooking  = async(req,res) =>{
 };
 
 // get all booking for a property 
-
 exports.getPropertyBooking = async (req,res)=>{
     try {
         // get id from params
@@ -74,17 +74,17 @@ exports.updateBooking = async(req,res)=>{
         // get bookingId from req.params
         const {bookingId} = req.params;
         // get data from user
-        const {checkInDate,checkOutDate,numberOfGuests } = req.body;
+        const {checkInDate,checkOutDate} = req.body;
 
         const booking = await bookings.findByPk(bookingId);
 
-        // if checkindate not provided
+        // if checkInDate not provided
         booking.checkInDate = checkInDate || booking.checkInDate;
 
-        // if checkoutdate not provided
+        // if checkOutDate not provided
         booking.checkOutDate = checkOutDate || booking.checkOutDate;
 
-        // if numberofguests not provided
+        // if numberOfGuests not provided
         booking.numberOfGuests = numberOfGuests || booking.numberOfGuests;
 
         // save all changes

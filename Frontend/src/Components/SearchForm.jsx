@@ -86,7 +86,9 @@ function SearchForm() {
             selectsEnd
             startDate={checkInDate}
             endDate={checkOutDate}
-            minDate={new Date() + 1}
+            minDate={checkInDate ? new Date (checkInDate.getTime()+ 86400000):new Date()
+              
+            }
             dateFormat="dd/MM/yyyy"
             className="border rounded px-2 py-1"
           />
