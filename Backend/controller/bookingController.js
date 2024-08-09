@@ -42,7 +42,9 @@ exports.getUserBooking  = async(req,res) =>{
 
         // all bookings made by user
         const booking =  await bookings.findAll({
-            where:{userId}, include:[{model:properties,as:'property'}]
+            where:{userId}, include:[{model:properties,as:'property',
+            attributes:['name','address','price','roomType']
+            }]
         });
         // response on success
         res.status(200).json(booking);

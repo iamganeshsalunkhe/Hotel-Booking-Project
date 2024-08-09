@@ -16,6 +16,7 @@ import ProtectedRoute from "./Components/ProtectedRoute";
 import { AuthProvider } from "./Context/AuthContext";
 import TestLink from "./Components/Testlink";
 import MakeBooking from "./Pages/MakeBooking";
+import BookingPage from "./Pages/BookingPage";
 
 
 function App() {
@@ -74,6 +75,7 @@ function App() {
           />
           <Route path="account" element={<Profilepage />} />
           <Route path="booking" element={<MakeBooking/>}/>
+          <Route path="myBooking" element={<BookingPage/>}/>
           <Route path="testfooter" element={<TestLink/>}/>
           <Route path="*" element={<Homepage />} />
         </Routes>

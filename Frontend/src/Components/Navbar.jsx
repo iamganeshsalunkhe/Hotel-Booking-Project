@@ -66,7 +66,7 @@ function Navbar() {
                     <Link to="/amenity">Manage Amenities</Link>
                   </li>
                   <li>
-                    <Link to="/booking">Manage Bookings</Link>
+                    <Link to="/myBooking">Manage Bookings</Link>
                   </li>
                   <li>
                     <Link to="/account">My Account </Link>
@@ -77,7 +77,7 @@ function Navbar() {
               {user && user.role === "customer" && (
                 <>
                   <li>
-                    <Link to="/My booking">My Bookings</Link>
+                    <Link to="/myBooking">My Bookings</Link>
                   </li>
 
                   <li>
