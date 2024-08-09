@@ -1,17 +1,15 @@
 import Footer from "../Components/Footer"
-import Home from "../Components/Home"
+import Forgotpassword from "../Components/Forgotpassword"
 import Navbar from "../Components/Navbar"
-import SearchFrom from '../Components/SearchForm'
 
-function Homepage() {
+function Forgotpasswordpage() {
     return (
         <div>
             <Navbar/>
-            <Home/>
-            <SearchFrom/>
+            <Forgotpassword/>
             <Footer/>
         </div>
     )
 }
 
-export default Homepage
+export default Forgotpasswordpage

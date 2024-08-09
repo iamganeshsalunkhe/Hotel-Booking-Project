@@ -1,6 +1,11 @@
+// import required modules
 const express = require('express');
 const dotenv = require("dotenv");
 const cors = require('cors');
+const cookieParser = require('cookie-parser');
+const bodyParser = require('body-parser');
+
+
 // configuration of dotenv
 dotenv.config();
 
@@ -9,8 +14,17 @@ const PORT = process.env.PORT || 4000;
 
 //initiating app
 const app = express();
-app.use(cors());
-app.use(express.json());
+app.use(express.json());  
+app.use(bodyParser.json());
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: "http://localhost:5173",
+    credentials:true
+  })
+);
+app.use('/uploads',express.static('uploads'));
+
 
 // importing routes
 const authRoute = require('./routes/auth');

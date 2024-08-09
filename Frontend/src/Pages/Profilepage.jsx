@@ -1,14 +1,14 @@
 import Footer from '../Components/Footer';
 import Navbar from '../Components/Navbar';
-import Signup from '../Components/Signup';
-function Signuppage() {
+import Profile from '../Components/Profile';
+function Profilepage() {
     return (
         <div>
             <Navbar/>
-            <Signup/>
+            <Profile/>
             <Footer/>
         </div>
     )
 }
 
-export default Signuppage
+export default Profilepage

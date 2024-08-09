@@ -4,9 +4,15 @@ const {properties} = require('../models');
 // get all properties on home PageUI
 
 exports.getProperties = async (req,res)=>{
+    const {locationId} =req.query;
     try {
         // get all properties
-        const allProperties = await properties.findAll();
+        const allProperties = await properties.findAll({
+            where:{
+                locationId,
+                isBooked:false,
+            }
+        });
         
         // send back response
         res.status(200).json(allProperties);

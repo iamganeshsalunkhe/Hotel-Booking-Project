@@ -3,7 +3,7 @@ const { users } = require("../models");
 
 module.exports = async (req, res, next) => {
     // getting token
-    const token = req.header("Authorization");
+    const token = req.cookies.token;
     
     // if token not provided
     if (!token) {
@@ -13,6 +13,7 @@ module.exports = async (req, res, next) => {
     try {
         // check user is valid using jwt
         const getUser = jwt.verify(token, process.env.JWT_SECRET);
+        if (!getUser) return res.status(403)
 
         // extract user using Primary key 
         const user = await users.findByPk(getUser.id); 

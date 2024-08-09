@@ -41,7 +41,15 @@ module.exports = (sequelize, DataTypes) => {
       address: DataTypes.STRING,
       roomType: DataTypes.STRING,
       price: DataTypes.INTEGER,
-      image:DataTypes.STRING
+      isBooked:{
+        type:DataTypes.BOOLEAN,
+        defaultValue:false
+      },
+      image:
+      {
+        type:DataTypes.STRING,
+        allowNull:true
+      }
     },
     {
       sequelize,

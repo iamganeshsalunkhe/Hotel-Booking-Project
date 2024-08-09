@@ -3,7 +3,7 @@ const express = require('express');
 
 const profileController = require('../controller/profileController');
 
-const authenticate = require('../middlware/authenticate');
+const authenticate = require('../middleware/authenticate');
 
 
 // initiate aa router

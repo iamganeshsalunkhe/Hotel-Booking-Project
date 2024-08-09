@@ -1,17 +1,15 @@
+import AddAmenity from "../Components/AddAmenity"
 import Footer from "../Components/Footer"
-import Home from "../Components/Home"
 import Navbar from "../Components/Navbar"
-import SearchFrom from '../Components/SearchForm'
 
-function Homepage() {
+function Addamenitypage() {
     return (
         <div>
             <Navbar/>
-            <Home/>
-            <SearchFrom/>
+            <AddAmenity/>
             <Footer/>
         </div>
     )
 }
 
-export default Homepage
+export default Addamenitypage

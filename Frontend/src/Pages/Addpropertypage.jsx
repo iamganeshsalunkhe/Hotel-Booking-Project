@@ -1,17 +1,15 @@
+import AddProperty from "../Components/AddProperty"
 import Footer from "../Components/Footer"
-import Home from "../Components/Home"
 import Navbar from "../Components/Navbar"
-import SearchFrom from '../Components/SearchForm'
 
-function Homepage() {
+function Addpropertypage() {
     return (
         <div>
             <Navbar/>
-            <Home/>
-            <SearchFrom/>
+            <AddProperty/>
             <Footer/>
         </div>
     )
 }
 
-export default Homepage
+export default Addpropertypage
