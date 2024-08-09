@@ -113,6 +113,17 @@ exports.deleteBooking = async (req,res)=>{
         // find the booking by bookingId
         const booking = await bookings.findByPk(bookingId);
 
+        if (!booking) return res.status(404).json({message:"booking not found"});
+        
+        const property = await properties.findOne(
+            {where :{propertyId:booking.propertyId}}
+        )
+
+        if (!property) return res.status(404).json({message:"Property not found"})
+
+        property.isBooked = false;
+        await property.save();
+
         // delete the booking
         await booking.destroy();
 
@@ -120,6 +131,8 @@ exports.deleteBooking = async (req,res)=>{
         res.status(200).json({message:"booking cancelled"});
     } catch (error) {
         // if any error occurs
+        console.log(error);
+        console.error(error);
         res.status(500).json({message:"Error while cancelling booking."})
     }
 };

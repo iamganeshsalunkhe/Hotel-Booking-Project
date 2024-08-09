@@ -1,6 +1,6 @@
+/* eslint-disable react/prop-types */
 import { useContext } from "react";
 import {AuthContext} from '../Context/AuthContext';
-/* eslint-disable react/prop-types */
 function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
   const {user} = useContext(AuthContext);
   
@@ -28,7 +28,7 @@ function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
         <div className="card-body ">
           <h2 className="card-title text-center font-bold">
             Property name :{" "}
-            {item.property ? item.property.name : "property name unavaiable"}
+            {item.property ? item.property.name : "property name unavailable"}
           </h2>
           <h4 className="font-bold">
             Property address : {item.property.address}
@@ -58,7 +58,7 @@ function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
             <div className="">
               <button
                 className="bg-red-600 p-2 rounded-md text-white font-medium"
-                onClick={() => onDelete(item.bookingId)}
+                onClick={() => onDelete(bookingDetails.bookingId)}
               >
                 Delete
               </button>

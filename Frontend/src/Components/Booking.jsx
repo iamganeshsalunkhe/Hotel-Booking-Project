@@ -9,7 +9,6 @@ function Booking() {
             try {
                 const res = await axios.get('http://localhost:4100/booking/user');
                 setBooking(res.data)
-                console.log(res.data)
             } catch (error) {
                 console.error(error);
             }
@@ -17,12 +16,31 @@ function Booking() {
         fetchBooking();
     },[]);
 
+
+    // handle delete booking 
+    const handleDeleteBooking= async (bookingId)=>{
+        try {
+            const confirmDelete = window.confirm("Do really want to delete your booking?")
+            if (confirmDelete){
+                await axios.delete(`http://localhost:4100/booking/${bookingId}`);
+
+                setBooking((prevBooking)=>prevBooking.filter(booking => booking.bookingId !== bookingId));
+                }
+            }
+         catch (error) {
+            console.error(error)    
+        }   
+    }
+
+
     return (
         <>
          <div className="grid grid-cols-2 gap-6 ml-20 mt-10">
             {booking.map((booking)=>(
                 <CustomerBookingCard key={booking.bookingId}
                 item={booking} bookingDetails={booking}
+                onDelete={handleDeleteBooking}
+
                 />
             ))}
             
