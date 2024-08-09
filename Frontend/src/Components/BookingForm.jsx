@@ -1,10 +1,46 @@
+import axios from "axios";
 import { useState } from "react";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
+import toast from "react-hot-toast";
+import { useNavigate,useLocation } from "react-router-dom";
 
 function BookingForm() {
+  const navigate = useNavigate();
+  const location = useLocation();
+  
   const [checkInDate, setCheckInDate] = useState(null);
   const [checkOutDate, setCheckOutDate] = useState(null);
+
+  const propertyId = location.state?.selectedPropertyId;
+
+
+
+  const handleSubmit = async (e)=>{
+    e.preventDefault();
+    console.log(propertyId);
+    const bookingData = {
+      propertyId:propertyId,
+      checkInDate,
+      checkOutDate, 
+      numberOfGuests:2
+    };
+
+    try {
+        await axios.post('http://localhost:4100/booking',bookingData,
+          {
+            headers:{
+              'Content-Type':'application/json'
+          }
+        }
+        );
+        toast.success('Your Booking has been Confirmed!!');
+        navigate('/');
+  } catch (error) {
+      console.error(error);
+  }
+  }
+
   return (
     <div className="booking-form p-4 max-w-lg mx-auto ">
       {/* Guest Details */}
@@ -12,16 +48,16 @@ function BookingForm() {
         <div className="grid grid-cols-1 gap-2">
           <h2 className="text-xl font-bold mb-2">Guest 1</h2>
           <div>
-            <label className="block mb-1">Name of the first guest : </label>
+            <label className="block mb-1">Name : </label>
             <input type="text" className="border-2 p-2 rounded w-full" />
           </div>
           <div>
-            <label className="block mb-1">Age of the first guest : </label>
+            <label className="block mb-1">Age : </label>
             <input type="number" className="border-2 p-2 rounded w-full" />
           </div>
           <div>
             <label className="block mb-1">
-              Aadhar/PAN Number of the first guest :
+              Aadhar/PAN Number :
             </label>
             <input type="text" className="border-2 p-2 rounded w-full" />
           </div>
@@ -30,16 +66,16 @@ function BookingForm() {
         <div className="grid grid-cols-1 gap-2">
           <h2 className="text-xl font-bold mb-2">Guest 2</h2>
           <div>
-            <label className="block mb-1">Name of the second guest : </label>
+            <label className="block mb-1">Name : </label>
             <input type="text" className="border-2 p-2 rounded w-full" />
           </div>
           <div>
-            <label className="block mb-1">Age of the second guest : </label>
+            <label className="block mb-1">Age : </label>
             <input type="number" className="border-2 p-2 rounded w-full" />
           </div>
           <div>
             <label className="block mb-1">
-              Aadhar/PAN Number of the second guest :
+              Aadhar/PAN Number :
             </label>
             <input type="text" className="border-2 p-2 rounded w-full" />
           </div>
@@ -100,7 +136,7 @@ function BookingForm() {
 
       {/* Confirm Booking Button */}
       <div className="text-center">
-        <button className="bg-blue-500 p-2 rounded-md text-white font-semibold cursor-pointer outline-none border-none w-full">
+        <button onClick={handleSubmit} className="bg-blue-500 p-2 rounded-md text-white font-semibold cursor-pointer outline-none border-none w-full">
           Confirm Booking
         </button>
       </div>

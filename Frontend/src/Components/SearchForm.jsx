@@ -1,13 +1,16 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
 
 import { useEffect, useState } from "react";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
-// import { format } from 'date-fns';
 import axios from "axios";
 import CardForHomeProperties from "../Components/CardForHomeProperties";
+import { useNavigate } from "react-router-dom";
 
 function SearchForm() {
+  const navigate = useNavigate();
+
   // states for checkInDate and checkOutDate
   const [checkInDate, setCheckInDate] = useState();
   const [checkOutDate, setCheckOutDate] = useState(null);
@@ -15,6 +18,8 @@ function SearchForm() {
   const [selectedLocation, setSelectedLocation] = useState("");
   const [properties, setProperties] = useState([]);
   const [searchInitiated, setSearchInitiated] = useState(false);
+
+  const [selectedPropertyId, setSelectedPropertyId] = useState(null);
 
   // fetch locations from database
   useEffect(() => {
@@ -48,6 +53,11 @@ function SearchForm() {
     } catch (error) {
       console.error(error);
     }
+  };
+
+  const handleReserve = (propertyId) => {
+    setSelectedPropertyId(propertyId);
+    navigate("/booking", { state: { selectedPropertyId:propertyId } });
   };
 
   return (
@@ -86,8 +96,10 @@ function SearchForm() {
             selectsEnd
             startDate={checkInDate}
             endDate={checkOutDate}
-            minDate={checkInDate ? new Date (checkInDate.getTime()+ 86400000):new Date()
-              
+            minDate={
+              checkInDate
+                ? new Date(checkInDate.getTime() + 86400000)
+                : new Date()
             }
             dateFormat="dd/MM/yyyy"
             className="border rounded px-2 py-1"
@@ -116,10 +128,15 @@ function SearchForm() {
       {/* display properties  */}
       <div className="mt-4 grid grid-cols-3 gap-4">
         {searchInitiated && properties.length === 0 ? (
-          <h2>No properties available for selected location</h2>
+          
+          <h1 className="text-center font-bold text-xl">No properties available for selected location</h1>
         ) : (
           properties.map((property) => (
-            <CardForHomeProperties key={property.propertyId} item={property} />
+            <CardForHomeProperties
+              key={property.propertyId}
+              item={property}
+              onReserve={handleReserve}
+            />
           ))
         )}
       </div>

@@ -13,11 +13,16 @@ exports.makeBooking = async(req,res)=>{
         const newbooking = await bookings.create({
             userId,
             propertyId,
-            checkInDate,
-            checkOutDate,
+            checkInDate :new Date(checkInDate),
+            checkOutDate:new Date (checkOutDate),
             status:'confirmed',
             numberOfGuests:2
         });
+
+        await properties.update(
+            { isBooked:true},
+            {where:{propertyId:propertyId}}
+        );
 
         // response on success
         res.status(201).json({message:"booking confirmed",newbooking});

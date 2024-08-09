@@ -1,20 +1,6 @@
 /* eslint-disable react/prop-types */
-import { useContext } from 'react';
-import {useNavigate} from 'react-router-dom';
-import { AuthContext } from '../Context/AuthContext';
 
-function Card({ item}) {
-
-  const navigate = useNavigate();
-
-  const {user} = useContext(AuthContext);
-  const handleReserve=() =>{
-    if (!user ) 
-      { navigate('/login');
-      }else {
-        navigate('/booking')
-      }
-  }
+function Card({ item, onReserve}) {
 
 
   return (
@@ -45,7 +31,7 @@ function Card({ item}) {
             <p className="font-medium">Address: {item.address}</p>
             </div>
           <div className="card-actions justify-end">
-            <button onClick={handleReserve} className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
+            <button onClick={()=>onReserve(item.propertyId)} className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
             
           </div>
         </div>
