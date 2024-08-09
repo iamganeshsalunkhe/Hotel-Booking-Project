@@ -5,6 +5,6 @@ const homeController =require('../controller/homeController');
 const router = express.Router();
 
 // define routes
-router.get('/',homeController.getProperties);
+router.get('/getProperties',homeController.getProperties);
 
 module.exports = router;

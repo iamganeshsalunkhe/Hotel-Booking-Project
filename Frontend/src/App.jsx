@@ -14,6 +14,8 @@ import Addamenitypage from "./Pages/Addamenitypage";
 import Forgotpasswordpage from "./Pages/Forgotpasswordpage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { AuthProvider } from "./Context/AuthContext";
+import TestLink from "./Components/Testlink";
+
 
 function App() {
   return (
@@ -70,6 +72,7 @@ function App() {
             }
           />
           <Route path="account" element={<Profilepage />} />
+          <Route path="testfooter" element={<TestLink/>}/>
           <Route path="*" element={<Homepage />} />
         </Routes>
         <Toaster />
