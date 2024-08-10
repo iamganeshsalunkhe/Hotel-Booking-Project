@@ -35,7 +35,7 @@ function BookingForm() {
         }
         );
         toast.success('Your Booking has been Confirmed!!');
-        navigate('/');
+        navigate('/booking');
   } catch (error) {
       console.error(error);
   }

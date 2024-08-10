@@ -1,8 +1,10 @@
 import { useEffect, useState } from "react"
 import CustomerBookingCard from "./CustomerBookingCard"
 import axios from "axios";
+import { useNavigate } from "react-router-dom";
 
 function Booking() {
+    const navigate = useNavigate();
     const [booking,setBooking]= useState([]);
     useEffect(()=>{
         const fetchBooking = async ()=>{
@@ -15,6 +17,11 @@ function Booking() {
         };
         fetchBooking();
     },[]);
+
+
+    const handleEditBooking = (booking)=>{
+        navigate('/booking/edit',{state:{booking}})
+    }
 
 
     // handle delete booking 
@@ -35,12 +42,14 @@ function Booking() {
 
     return (
         <>
-         <div className="grid grid-cols-2 gap-6 ml-20 mt-10">
+        <div className="grid grid-cols-2 gap-6 ml-20 mt-10">
             {booking.map((booking)=>(
-                <CustomerBookingCard key={booking.bookingId}
-                item={booking} bookingDetails={booking}
+                <CustomerBookingCard 
+                key={booking.bookingId}
+                item={booking}
+                bookingDetails={booking}
+                onEdit={()=>handleEditBooking(booking)}
                 onDelete={handleDeleteBooking}
-
                 />
             ))}
             

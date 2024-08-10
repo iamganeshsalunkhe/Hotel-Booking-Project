@@ -91,8 +91,6 @@ exports.updateBooking = async(req,res)=>{
         // if checkOutDate not provided
         booking.checkOutDate = checkOutDate || booking.checkOutDate;
 
-        // if numberOfGuests not provided
-        booking.numberOfGuests = numberOfGuests || booking.numberOfGuests;
 
         // save all changes
         await booking.save();
