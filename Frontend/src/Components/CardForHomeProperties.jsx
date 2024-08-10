@@ -1,5 +1,8 @@
 /* eslint-disable react/prop-types */
-function Card({ item}) {
+
+function Card({ item, onReserve}) {
+
+
   return (
     <div>
       <div className="card bg-green-500 w-[300px] shadow-xl text-white">
@@ -28,7 +31,7 @@ function Card({ item}) {
             <p className="font-medium">Address: {item.address}</p>
             </div>
           <div className="card-actions justify-end">
-            <button className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
+            <button onClick={()=>onReserve(item.propertyId)} className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
             
           </div>
         </div>
