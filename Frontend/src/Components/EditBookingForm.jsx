@@ -3,8 +3,8 @@ import { useState } from "react"
 import DatePicker from "react-datepicker";
 
 function EditBookingForm({bookingDetails,onSave,onCancel}) {
-    const [checkInDate,setCheckInDate]= useState('');
-    const [checkOutDate,setCheckOutDate]= useState('');
+    const [checkInDate,setCheckInDate]= useState(new Date(bookingDetails.checkInDate));
+    const [checkOutDate,setCheckOutDate]= useState(new Date(bookingDetails.checkOutDate));
 
 
     const handleSubmit = (e)=>{

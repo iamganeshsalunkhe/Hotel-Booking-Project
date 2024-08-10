@@ -56,23 +56,41 @@ exports.getUserBooking  = async(req,res) =>{
 };
 
 // get all booking for a property 
-exports.getPropertyBooking = async (req,res)=>{
+exports.getBookingForOwner = async (req,res)=>{
     try {
-        // get id from params
-        const {propertyId} = req.params;
-
-        // get all property booking
-        const booking = await bookings.findAll({
-            where:{propertyId},
-            include:[{model:users, as:'user'}]
-        });
-        // response on success
-        res.status(200).json(booking);
+        const {userId}= req.user;
+        const allProperties =  await properties.findAll({
+            where:
+            {
+                userId,
+                isBooked:true
+            },
+            attributes:['name','address','roomType','price'],
+            include:[{
+                model:bookings,
+                as :'bookings',
+                attributes:['checkInDate','checkOutDate','numberOfGuests'],
+                required:false
+            }
+            ]
+        })
+        const allBooking = allProperties.flatMap(property=>property.bookings.map(bookings=>({
+            propertyName:property.name,
+            propertyRoomName:property.roomType,
+            propertyAddress:property.address,
+            propertyPrice:property.price,
+            checkInDate:bookings.checkInDate,
+            checkOutDate:bookings.checkOutDate,
+            numberOfGuests:bookings.numberOfGuests
+        }))
+        );
+        console.log(allBooking);
+        res.status(200).json(allBooking);
     } catch (error) {
-        // if any  error occurs
-        res.status(500).json({message:"Error while fetching property wise booking"});
+        console.log(error);
+        res.status(500).json({message:"Failed to get booking"})
     }
-};
+}
 
 
 // update the booking

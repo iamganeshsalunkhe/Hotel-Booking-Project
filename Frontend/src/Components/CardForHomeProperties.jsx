@@ -15,24 +15,26 @@ function Card({ item, onReserve}) {
             className="w-full h-1/2 object-cover"
           />
           <div className="absolute top-2 left-2 bg-red-600 text-white text-sm px-2 py-1 rounded">
-             2 Adults/room
+            2 Adults/room
           </div>
           <div className="absolute bottom-2 right-2 bg-red-600 text-white text-sm px-1 rounded py-1">
             Only 1 room left
           </div>
         </figure>
         <div className="card-body ">
-          <h2 className="card-title text-center font-bold">
-            {item.name}
-          </h2>
+          <h2 className="card-title text-center font-bold">{item.name}</h2>
           <p className="font-medium ">Room name: {item.roomType}</p>
           <div>
-            <p className="font-medium">Price: {item.price}/Night</p>
+            <p className="font-medium">Price: ₹{item.price}/Night</p>
             <p className="font-medium">Address: {item.address}</p>
-            </div>
+          </div>
           <div className="card-actions justify-end">
-            <button onClick={()=>onReserve(item.propertyId)} className="bg-indigo-600 p-2 rounded text-white font-semibold">Reserve</button>
-            
+            <button
+              onClick={() => onReserve(item.propertyId)}
+              className="bg-indigo-600 p-2 rounded text-white font-semibold"
+            >
+              Reserve
+            </button>
           </div>
         </div>
       </div>

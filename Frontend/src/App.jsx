@@ -18,6 +18,7 @@ import TestLink from "./Components/Testlink";
 import MakeBooking from "./Pages/MakeBooking";
 import BookingPage from "./Pages/BookingPage";
 import Editbookingpage from "./Pages/Editbookingpage";
+import Adminbookingpage from "./Pages/Adminbookingpage";
 
 
 function App() {
@@ -75,6 +76,12 @@ function App() {
             }
           />
           <Route path="account" element={<Profilepage />} />
+          <Route path="/manageBooking" element={
+            <ProtectedRoute role='admin'>
+              <Adminbookingpage/>
+            </ProtectedRoute>
+          }
+          />
           <Route path="booking" element={<MakeBooking/>}/>
           <Route path="myBooking" element={<BookingPage/>}/>
           <Route 

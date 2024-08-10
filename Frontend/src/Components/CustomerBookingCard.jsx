@@ -1,9 +1,5 @@
 /* eslint-disable react/prop-types */
-import { useContext } from "react";
-import {AuthContext} from '../Context/AuthContext';
 function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
-  const {user} = useContext(AuthContext);
-  
 
   const formatDate = (dateString)=>{
     return new Intl.DateTimeFormat('en-GB',{
@@ -34,7 +30,9 @@ function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
             Property address : {item.property.address}
           </h4>
           <h4 className="font-bold">Room name : {item.property.roomType}</h4>
-          <h4 className="font-bold">Price : {item.property.price} per night (for 2 peoples)</h4>
+          <h4 className="font-bold">
+            Price : ₹{item.property.price} per night (for 2 peoples)
+          </h4>
           <p className="font-bold">
             Check-in Date : {formatDate(bookingDetails.checkInDate)}
           </p>
@@ -44,27 +42,25 @@ function CustomerBookingCard({ item,bookingDetails, onEdit, onDelete }){
           <p className="font-bold">Status : {bookingDetails.status}</p>
         </div>
 
-        {user.role === "customer" && (
-          <div className="card-actions justify-end p-4">
-            <div className="">
-              <button
-                className=" bg-green-600 p-2 rounded-md text-white font-medium"
-                onClick={onEdit}
-              >
-                Edit
-              </button>
-            </div>
-
-            <div className="">
-              <button
-                className="bg-red-600 p-2 rounded-md text-white font-medium"
-                onClick={() => onDelete(bookingDetails.bookingId)}
-              >
-                Delete
-              </button>
-            </div>
+        <div className="card-actions justify-end p-4">
+          <div className="">
+            <button
+              className=" bg-green-600 p-2 rounded-md text-white font-medium"
+              onClick={onEdit}
+            >
+              Edit
+            </button>
           </div>
-        )}
+
+          <div className="">
+            <button
+              className="bg-red-600 p-2 rounded-md text-white font-medium"
+              onClick={() => onDelete(bookingDetails.bookingId)}
+            >
+              Delete
+            </button>
+          </div>
+        </div>
       </div>
     </div>
   );
