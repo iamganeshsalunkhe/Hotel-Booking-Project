@@ -17,6 +17,7 @@ import { AuthProvider } from "./Context/AuthContext";
 import TestLink from "./Components/Testlink";
 import MakeBooking from "./Pages/MakeBooking";
 import BookingPage from "./Pages/BookingPage";
+import Editbookingpage from "./Pages/Editbookingpage";
 
 
 function App() {
@@ -59,7 +60,7 @@ function App() {
           <Route
             path="amenity"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role='admin'>
                 <Amenitypage />
               </ProtectedRoute>
             }
@@ -68,7 +69,7 @@ function App() {
           <Route
             path="amenity/add"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role='admin'>
                 <Addamenitypage />
               </ProtectedRoute>
             }
@@ -76,6 +77,13 @@ function App() {
           <Route path="account" element={<Profilepage />} />
           <Route path="booking" element={<MakeBooking/>}/>
           <Route path="myBooking" element={<BookingPage/>}/>
+          <Route 
+          path="booking/edit" element={
+            <ProtectedRoute role='customer' >
+              <Editbookingpage/>
+            </ProtectedRoute>
+          }
+          />
           <Route path="testfooter" element={<TestLink/>}/>
           <Route path="*" element={<Homepage />} />
         </Routes>
