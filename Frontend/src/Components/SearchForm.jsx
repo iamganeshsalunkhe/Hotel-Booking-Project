@@ -129,7 +129,7 @@ function SearchForm() {
       <div className="mt-4 grid grid-cols-3 gap-4">
         {searchInitiated && properties.length === 0 ? (
           
-          <h1 className="text-center font-bold text-xl">No properties available for selected location</h1>
+          <h1 className="text-center font-bold text-xl">No properties available for selected location or for selected dates</h1>
         ) : (
           properties.map((property) => (
             <CardForHomeProperties

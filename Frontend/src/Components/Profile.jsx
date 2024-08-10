@@ -41,7 +41,7 @@ function Profile() {
       .then((res) => {
         setUser(res.data);
         setIsEditing(false);
-        toast.success("Information updated successfully!!")
+        toast.success("Profile updated successfully!!")
       })
       .catch((error) => {
         console.error("Error while updating the profile:", error)

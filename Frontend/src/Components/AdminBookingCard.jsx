@@ -19,7 +19,7 @@ function AdminBookingCard({item}) {
               <p className="font-bold">Address: {item.propertyAddress}</p>
             </div>
             <div className=" text-white ">
-              <h3 className="font-bold">Booking Details  : </h3>
+              <h3 className="font-bold text-xl">Booking Details  : </h3>
               <p className="font-bold">Check in Date : {formatDate(item.checkInDate)}</p>
               <p className="font-bold">Check out Date : {formatDate(item.checkOutDate)}</p>
               <p className="font-bold">

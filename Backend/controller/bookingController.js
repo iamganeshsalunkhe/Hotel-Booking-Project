@@ -84,7 +84,6 @@ exports.getBookingForOwner = async (req,res)=>{
             numberOfGuests:bookings.numberOfGuests
         }))
         );
-        console.log(allBooking);
         res.status(200).json(allBooking);
     } catch (error) {
         console.log(error);

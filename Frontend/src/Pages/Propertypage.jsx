@@ -4,6 +4,7 @@ import axios from 'axios';
 import Card from '../Components/Card';
 import { useNavigate } from 'react-router-dom';
 import Spinner from '../Components/Spinner';
+import toast from 'react-hot-toast';
 
 function Propertypage() {
   const navigate = useNavigate();
@@ -38,19 +39,30 @@ function Propertypage() {
   // function for delete a property
   async function handleDeleteButton(propertyId) {
     try {
+      
       const confirmDelete = window.confirm(
         "Do you really want to delete this property?"
       );
 
       if (confirmDelete) {
-        await axios.delete(`http://localhost:4100/property/${propertyId}`);
+        
+        const res = await axios.delete(`http://localhost:4100/property/${propertyId}`);
 
-        setProperties(
-          properties.filter((property) => property.propertyId !== propertyId)
+        console.log(res);
+        if (res.status === 200){
+        setProperties((prevProperties)=>
+          prevProperties.filter((property) => property.propertyId !== propertyId)
         );
-      }
+      } else {
+        alert("property could not be deleted, it may be booked.");
+      }}  
     } catch (error) {
-      setError(error.message);
+      console.error("Error during deletion:", error.response.data.message);
+      // Alert the user with the API's error message
+      toast.error(
+        error.response.data.message ||
+          "An error occurred while deleting the property."
+      );
     }
   }
 

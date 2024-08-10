@@ -61,7 +61,7 @@ function App() {
           <Route
             path="amenity"
             element={
-              <ProtectedRoute role='admin'>
+              <ProtectedRoute role="admin">
                 <Amenitypage />
               </ProtectedRoute>
             }
@@ -70,28 +70,51 @@ function App() {
           <Route
             path="amenity/add"
             element={
-              <ProtectedRoute role='admin'>
+              <ProtectedRoute role="admin">
                 <Addamenitypage />
               </ProtectedRoute>
             }
           />
           <Route path="account" element={<Profilepage />} />
-          <Route path="/manageBooking" element={
-            <ProtectedRoute role='admin'>
-              <Adminbookingpage/>
+          <Route
+            path="/manageBooking"
+            element={
+              <ProtectedRoute role="admin">
+                <Adminbookingpage />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="booking"
+            element={
+              <ProtectedRoute role="admin">
+                <MakeBooking />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="booking"
+            element={
+              <ProtectedRoute role="customer">
+                <MakeBooking />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="myBooking" element={
+            <ProtectedRoute role='customer'>
+              <BookingPage />
             </ProtectedRoute>
           }
           />
-          <Route path="booking" element={<MakeBooking/>}/>
-          <Route path="myBooking" element={<BookingPage/>}/>
-          <Route 
-          path="booking/edit" element={
-            <ProtectedRoute role='customer' >
-              <Editbookingpage/>
-            </ProtectedRoute>
-          }
+          <Route
+            path="booking/edit"
+            element={
+              <ProtectedRoute role="customer">
+                <Editbookingpage />
+              </ProtectedRoute>
+            }
           />
-          <Route path="testfooter" element={<TestLink/>}/>
+          <Route path="testfooter" element={<TestLink />} />
           <Route path="*" element={<Homepage />} />
         </Routes>
         <Toaster />

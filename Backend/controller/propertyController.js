@@ -81,18 +81,21 @@ exports.updateProperties = async (req, res) => {
 exports.deleteProperty = async (req, res) => {
   try {
     // get information as input
-    // get userId from token
-    const { userId } = req.user;
 
     // get propertyId from request parameters
     const { propertyId } = req.params;
 
+
     // find the property using userId and propertyId
     const property = await properties.findByPk(propertyId);
+    
 
     if (!property)
       return res.status(404).json({ message: "Property not found" });
 
+    if (property.isBooked === true)
+      return res.status(403).json({message:"Property already booked for stay"})
+    
     // to delete the property
     await property.destroy();
 
