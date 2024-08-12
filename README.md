@@ -16,10 +16,10 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - Node.js
 - Express.js
 - Sequelize (ORM for MySQL)
-- MySQL
+- MySQL (database)
 - bcrypt (for password hashing)
-- JWT
-- multer
+- JWT (authentication)
+- multer (for uploading files)
 - cors
 
 ### Frontend
@@ -27,7 +27,6 @@ This is a full-stack hotel booking application built from scratch. The applicati
 - React Router
 - Tailwind CSS
 - react-toast
-- react-silk
 - daisyUI
 - axios
 
