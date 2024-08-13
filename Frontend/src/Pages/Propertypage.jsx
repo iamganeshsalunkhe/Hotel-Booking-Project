@@ -65,8 +65,8 @@ function Propertypage() {
     }
   }
 
-  function handleAmenities(property){
-    navigate('/linkamenities',{state:{property}})
+  function handleAmenities(propertyId){
+    navigate('/linkamenities',{state:{propertyId}})
   }
 
   return (

@@ -21,4 +21,7 @@ router.delete('/property/:propertyId',authenticate,propertyController.deleteProp
 // get all properties (self-listed)
 router.get('/properties/getall',authenticate,propertyController.getAllProperties);
 
+// link amenities with properties
+router.post('/:propertyId/linkamenities',authenticate,propertyController.linkamenities);
+
 module.exports = router;

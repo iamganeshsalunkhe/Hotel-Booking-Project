@@ -1,31 +1,69 @@
+/* eslint-disable react/prop-types */
 import {useEffect, useState} from'react';
 import axios from 'axios';
+import toast from 'react-hot-toast';
+import { useLocation, useNavigate } from 'react-router-dom';
 function LinkAmenities() {
+    const navigate = useNavigate();
+    const location = useLocation();
+    const propertyId = location.state?.propertyId;
     const [amenities,setAmenities]= useState([]);
     const [selectedAmenities,setSelectedAmenities]= useState([]);
 
-    useEffect(()=>{
-        const fetchAmenities = async ()=>{
-            try {
-                const res = await axios.get('http://localhost:4100/amenities')
-                setAmenities(res.data);
-            } catch (error) {
-                console.error("Error fetching amenities :",error);
-            }
-        };fetchAmenities();
-    },[]);
+    // useEffect(()=>{
+    //     const fetchAmenities = async ()=>{
+    //         try {
+    //             const res = await axios.get(`http://localhost:4100/${propertyId}/amenities`)
+    //             setSelectedAmenities(res.data.map(amenity=>amenity.amenityId))
+    //         } catch (error) {
+    //             console.error("Error fetching amenities :",error);
+    //         }
+    //     };fetchAmenities();
+    // },[propertyId]);
+
 
     function handleSelectAmenity(amenityId){
         setSelectedAmenities((prevSelected)=>
         prevSelected.includes(amenityId) ? prevSelected.filter((id) => id !== amenityId):[...prevSelected,amenityId])
     }
 
+
+    async function handleSubmit(e) {
+        e.preventDefault();
+        try {
+            // eslint-disable-next-line no-unused-vars
+            const res = await axios.post(`http://localhost:4100/${propertyId}/linkamenities`,{
+                propertyId,
+                amenityIds:selectedAmenities
+            });
+            toast.success("Amenities are linked successfully.");
+            navigate('/property')
+        } catch (error) {
+            console.error("Error linking amenities:",error.res? error.res.data.message : error.message);
+            console.log(error)
+            toast.error(error.res ? error.res.data.message:"An error occurred while linking amenities")
+        }
+    }
+
+    async function fetchAllAmenities() {
+        try {
+            const res = await axios.get('http://localhost:4100/amenities')
+            setAmenities(res.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(()=>{
+        fetchAllAmenities();
+    },[]);
+
     return (
         <>
-            <form>
+            <form onSubmit={handleSubmit}>
                 <h2 className='text-4xl text-center bg-zinc-600 text-white font-bold ' >Link Amenities</h2>
                 <div className='flex flex-wrap bg-slate-400 font-semibold text-2xl'>
                     {amenities.map((amenity)=>(
+                        
                         <label key={amenity.amenityId} 
                         className='w-1/2 flex items-center mb-2'>
                         <input 
@@ -37,6 +75,7 @@ function LinkAmenities() {
                         />
                         <span>{amenity.name}</span>
                         </label>
+                        
                     ))}
                 </div>
                 <div className='text-center bg-slate-300'>
