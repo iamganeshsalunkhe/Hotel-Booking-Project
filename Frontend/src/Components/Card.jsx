@@ -13,25 +13,25 @@ function Card({ item ,onEdit,onDelete}) {
           />
         </figure>
         <div className="card-body ">
-          <h2 className="card-title text-center font-bold">
-            {item.name}
-          </h2>
+          <h2 className="card-title text-center font-bold">{item.name}</h2>
           <p className="font-medium ">Room name: {item.roomType}</p>
           <div>
-            <p className="font-medium">Price: {item.price}/Night</p>
+            <p className="font-medium">Price: ₹{item.price}/Night</p>
             <p className="font-medium">Address: {item.address}</p>
-            </div>
+          </div>
           <div className="card-actions justify-end">
             <div className="">
-              <button className=" bg-green-600 p-2 rounded-md text-white"
-              onClick={onEdit}
+              <button
+                className=" bg-green-600 p-2 rounded-md text-white"
+                onClick={onEdit}
               >
                 Edit
               </button>
             </div>
             <div className="">
-              <button className="bg-red-600 p-2 rounded-md text-white"
-              onClick={()=>onDelete(item.propertyId)}
+              <button
+                className="bg-red-600 p-2 rounded-md text-white"
+                onClick={() => onDelete(item.propertyId)}
               >
                 Delete
               </button>

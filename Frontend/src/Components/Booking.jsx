@@ -42,8 +42,12 @@ function Booking() {
 
     return (
         <>
+            {booking.length > 0 ? <h1 className="text-3xl font-semibold p-4 text-center  bg-gray-600 text-white w-1/2 mx-auto rounded-md">Your booking confirmed properties</h1> :""}
         <div className="grid grid-cols-2 gap-6 ml-20 mt-10">
-            {booking.map((booking)=>(
+
+            {
+            booking.length > 0 ?
+            booking.map((booking)=>(
                 <CustomerBookingCard 
                 key={booking.bookingId}
                 item={booking}
@@ -51,7 +55,7 @@ function Booking() {
                 onEdit={()=>handleEditBooking(booking)}
                 onDelete={handleDeleteBooking}
                 />
-            ))}
+            )):<h1 className="text-center text-4xl font-bold">No booking available</h1>}
             
         </div>   
         </>

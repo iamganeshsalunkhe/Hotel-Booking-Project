@@ -13,7 +13,7 @@ router.post('/booking',authenticate,bookingController.makeBooking);
 router.get('/booking/user',authenticate,bookingController.getUserBooking);
 
 // get booking for a property
-router.get('/booking/property/:propertyId',authenticate,bookingController.getPropertyBooking);
+router.get('/owner/:userId/bookings',authenticate,bookingController.getBookingForOwner);
 
 // update the booking
 router.put('/booking/:bookingId',authenticate,bookingController.updateBooking);
