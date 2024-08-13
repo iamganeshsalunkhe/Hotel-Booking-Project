@@ -48,7 +48,6 @@ function Propertypage() {
         
         const res = await axios.delete(`http://localhost:4100/property/${propertyId}`);
 
-        console.log(res);
         if (res.status === 200){
         setProperties((prevProperties)=>
           prevProperties.filter((property) => property.propertyId !== propertyId)
@@ -64,6 +63,10 @@ function Propertypage() {
           "An error occurred while deleting the property."
       );
     }
+  }
+
+  function handleAmenities(property){
+    navigate('/linkamenities',{state:{property}})
   }
 
   return (
@@ -94,6 +97,7 @@ function Propertypage() {
               item={item}
               onEdit={() => handleEditButton(item)}
               onDelete={handleDeleteButton}
+              onClick={handleAmenities}
             />
           ))
         )}
