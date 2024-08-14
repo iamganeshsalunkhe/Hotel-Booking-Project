@@ -2,7 +2,7 @@ import {Link} from'react-router-dom';
 function Footer() {
   return (
     <div>
-      <footer className="footer  p-10 text-black font-medium justify-between bg-gray-200 mt-3">
+      <footer className="footer  p-10 text-black font-medium justify-between bg-gray-200 ">
         <nav>
           <h6 className="footer-title text-black">Services</h6>
           <Link to="/testfooter" className="link link-hover">

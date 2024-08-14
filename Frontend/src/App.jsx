@@ -19,6 +19,7 @@ import MakeBooking from "./Pages/MakeBooking";
 import BookingPage from "./Pages/BookingPage";
 import Editbookingpage from "./Pages/Editbookingpage";
 import Adminbookingpage from "./Pages/Adminbookingpage";
+import LinkAmenitiespage from "./Pages/LinkAmenitiespage";
 
 
 function App() {
@@ -75,6 +76,15 @@ function App() {
               </ProtectedRoute>
             }
           />
+          <Route 
+          path="linkamenities"
+          element={
+            <ProtectedRoute role='admin'>
+              <LinkAmenitiespage/>
+            </ProtectedRoute>
+          }
+          />
+          
           <Route path="account" element={<Profilepage />} />
           <Route
             path="/manageBooking"
@@ -84,7 +94,8 @@ function App() {
               </ProtectedRoute>
             }
           />
-          <Route
+          <Route path='booking' element={<MakeBooking/>}/>
+          {/* <Route
             path="booking"
             element={
               <ProtectedRoute role="admin">
@@ -99,7 +110,7 @@ function App() {
                 <MakeBooking />
               </ProtectedRoute>
             }
-          />
+          /> */}
           <Route path="myBooking" element={
             <ProtectedRoute role='customer'>
               <BookingPage />

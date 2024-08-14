@@ -1,15 +1,16 @@
 /* eslint-disable no-unused-vars */
 /* eslint-disable react/prop-types */
-
-import { useEffect, useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import Datepicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import axios from "axios";
 import CardForHomeProperties from "../Components/CardForHomeProperties";
 import { useNavigate } from "react-router-dom";
+import {AuthContext} from '../Context/AuthContext';
 
 function SearchForm() {
   const navigate = useNavigate();
+  const {user}= useContext(AuthContext);
 
   // states for checkInDate and checkOutDate
   const [checkInDate, setCheckInDate] = useState();
@@ -56,8 +57,12 @@ function SearchForm() {
   };
 
   const handleReserve = (propertyId) => {
+    if (!user){
+      navigate('/login')
+    }else {
     setSelectedPropertyId(propertyId);
     navigate("/booking", { state: { selectedPropertyId:propertyId } });
+    }
   };
 
   return (

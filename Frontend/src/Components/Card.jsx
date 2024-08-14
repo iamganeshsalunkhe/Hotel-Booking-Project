@@ -1,5 +1,5 @@
 /* eslint-disable react/prop-types */
-function Card({ item ,onEdit,onDelete}) {
+function Card({ item ,onEdit,onDelete,onClick}) {
   return (
     <div>
       <div className="card bg-indigo-500 w-[450px] shadow-xl text-white">
@@ -21,8 +21,14 @@ function Card({ item ,onEdit,onDelete}) {
           </div>
           <div className="card-actions justify-end">
             <div className="">
+              <button onClick={()=>onClick(item.propertyId)}className="bg-gray-600 p-2 rounded-md text-white font-semibold">
+                Manage Amenities
+              </button>
+            </div>
+
+            <div className="">
               <button
-                className=" bg-green-600 p-2 rounded-md text-white"
+                className=" bg-green-600 p-2 rounded-md text-white font-semibold"
                 onClick={onEdit}
               >
                 Edit
@@ -30,7 +36,7 @@ function Card({ item ,onEdit,onDelete}) {
             </div>
             <div className="">
               <button
-                className="bg-red-600 p-2 rounded-md text-white"
+                className="bg-red-600 p-2 rounded-md text-white font-semibold"
                 onClick={() => onDelete(item.propertyId)}
               >
                 Delete
