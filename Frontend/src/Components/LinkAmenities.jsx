@@ -10,18 +10,18 @@ function LinkAmenities() {
     const [amenities,setAmenities]= useState([]);
     const [selectedAmenities,setSelectedAmenities]= useState([]);
 
-    // useEffect(()=>{
-    //     const fetchAmenities = async ()=>{
-    //         try {
-    //             const res = await axios.get(`http://localhost:4100/${propertyId}/amenities`)
-    //             setSelectedAmenities(res.data.map(amenity=>amenity.amenityId))
-    //         } catch (error) {
-    //             console.error("Error fetching amenities :",error);
-    //         }
-    //     };fetchAmenities();
-    // },[propertyId]);
-
-
+    async function fetchAllAmenities() {
+        try {
+            const res = await axios.get('http://localhost:4100/amenities')
+            setAmenities(res.data);
+        } catch (error) {
+            console.error(error);
+        }
+    }
+    useEffect(()=>{
+        fetchAllAmenities();
+    },[]);
+    
     function handleSelectAmenity(amenityId){
         setSelectedAmenities((prevSelected)=>
         prevSelected.includes(amenityId) ? prevSelected.filter((id) => id !== amenityId):[...prevSelected,amenityId])
@@ -45,17 +45,6 @@ function LinkAmenities() {
         }
     }
 
-    async function fetchAllAmenities() {
-        try {
-            const res = await axios.get('http://localhost:4100/amenities')
-            setAmenities(res.data);
-        } catch (error) {
-            console.error(error);
-        }
-    }
-    useEffect(()=>{
-        fetchAllAmenities();
-    },[]);
 
     return (
         <>
