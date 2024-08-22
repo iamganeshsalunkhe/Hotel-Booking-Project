@@ -1,5 +1,6 @@
 import { useEffect, useState } from 'react';
 import Navbar from '../Components/Navbar';
+import Footer from '../Components/Footer';
 import axios from 'axios';
 import Card from '../Components/Card';
 import { useNavigate } from 'react-router-dom';
@@ -65,10 +66,6 @@ function Propertypage() {
     }
   }
 
-  function handleAmenities(propertyId){
-    navigate('/linkamenities',{state:{propertyId}})
-  }
-
   return (
     <div className="bg-orange-200">
       <Navbar />
@@ -97,7 +94,6 @@ function Propertypage() {
               item={item}
               onEdit={() => handleEditButton(item)}
               onDelete={handleDeleteButton}
-              onClick={handleAmenities}
             />
           ))
         )}
@@ -111,6 +107,7 @@ function Propertypage() {
           Add
         </button>
       </div>
+      <Footer/>
     </div>
   );
 }   
