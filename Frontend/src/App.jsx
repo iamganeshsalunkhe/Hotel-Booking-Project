@@ -15,6 +15,11 @@ import Forgotpasswordpage from "./Pages/Forgotpasswordpage";
 import ProtectedRoute from "./Components/ProtectedRoute";
 import { AuthProvider } from "./Context/AuthContext";
 import TestLink from "./Components/Testlink";
+import MakeBooking from "./Pages/MakeBooking";
+import BookingPage from "./Pages/BookingPage";
+import Editbookingpage from "./Pages/Editbookingpage";
+import Adminbookingpage from "./Pages/Adminbookingpage";
+import LinkAmenitiespage from "./Pages/LinkAmenitiespage";
 
 
 function App() {
@@ -57,7 +62,7 @@ function App() {
           <Route
             path="amenity"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role="admin">
                 <Amenitypage />
               </ProtectedRoute>
             }
@@ -66,13 +71,61 @@ function App() {
           <Route
             path="amenity/add"
             element={
-              <ProtectedRoute>
+              <ProtectedRoute role="admin">
                 <Addamenitypage />
               </ProtectedRoute>
             }
           />
+          <Route 
+          path="linkamenities"
+          element={
+            <ProtectedRoute role='admin'>
+              <LinkAmenitiespage/>
+            </ProtectedRoute>
+          }
+          />
+          
           <Route path="account" element={<Profilepage />} />
-          <Route path="testfooter" element={<TestLink/>}/>
+          <Route
+            path="/manageBooking"
+            element={
+              <ProtectedRoute role="admin">
+                <Adminbookingpage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path='booking' element={<MakeBooking/>}/>
+          {/* <Route
+            path="booking"
+            element={
+              <ProtectedRoute role="admin">
+                <MakeBooking />
+              </ProtectedRoute>
+            }
+          />
+          <Route
+            path="booking"
+            element={
+              <ProtectedRoute role="customer">
+                <MakeBooking />
+              </ProtectedRoute>
+            }
+          /> */}
+          <Route path="myBooking" element={
+            <ProtectedRoute role='customer'>
+              <BookingPage />
+            </ProtectedRoute>
+          }
+          />
+          <Route
+            path="booking/edit"
+            element={
+              <ProtectedRoute role="customer">
+                <Editbookingpage />
+              </ProtectedRoute>
+            }
+          />
+          <Route path="testfooter" element={<TestLink />} />
           <Route path="*" element={<Homepage />} />
         </Routes>
         <Toaster />

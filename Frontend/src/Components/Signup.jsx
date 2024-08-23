@@ -60,7 +60,7 @@ function Signup() {
             (res)=>{
                 if (res.data){
                     toast.success("Account created successfully")
-                    navigate('/');
+                    navigate('/login');
                 }
             }).catch((err)=>{
                 if (err.response){

@@ -47,18 +47,16 @@ function Forgotpassword() {
 
   async function onSubmit (e){
     e.preventDefault();
-    await axios.post('http://localhost:4100/forgot-password',{email,password})
-    .then((res)=>{
+    try{
+      
+      const res = await axios.post('http://localhost:4100/forgot-password',{email,password});
         if (res.data){
             toast.success("Password changed Successfully.")
             navigate('/login')
         }
-    })
-    .catch((err)=>{
-        if (err.res){
-            toast.error("Error while updating password")
-        }
-    })
+    }catch(err){
+       toast.error(err.response?.data?.message || "Error while updating password")
+    }
   }
 
   return (

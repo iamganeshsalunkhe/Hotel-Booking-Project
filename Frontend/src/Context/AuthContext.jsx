@@ -11,7 +11,6 @@ export function AuthProvider ({children}){
             try {
                 const res = await axios.get('http://localhost:4100/profile',{withCredentials:true});
                 setUser(res.data)
-                console.log(res.data)
             } catch (error) {
                 console.error("Error fetching user data",error);
             }

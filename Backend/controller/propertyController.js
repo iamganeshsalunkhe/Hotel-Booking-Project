@@ -1,5 +1,5 @@
 // import the required modules
-const { properties} = require("../models");
+const { properties,amenities,propertyamenities} = require("../models");
 
 
 //add new property(only works when user is logged in)
@@ -81,18 +81,21 @@ exports.updateProperties = async (req, res) => {
 exports.deleteProperty = async (req, res) => {
   try {
     // get information as input
-    // get userId from token
-    const { userId } = req.user;
 
     // get propertyId from request parameters
     const { propertyId } = req.params;
 
+
     // find the property using userId and propertyId
     const property = await properties.findByPk(propertyId);
+    
 
     if (!property)
       return res.status(404).json({ message: "Property not found" });
 
+    if (property.isBooked === true)
+      return res.status(403).json({message:"Property already booked for stay"})
+    
     // to delete the property
     await property.destroy();
 
@@ -121,4 +124,24 @@ exports.getAllProperties = async (req,res)=>{
         // if any error occurs
         res.status(500).json({message:"Error while getting all properties"});
     }
+};
+
+
+exports.linkamenities = async (req,res)=>{
+  const {propertyId} = req.params;
+  const {amenityIds}= req.body;
+
+  try {
+    const property = await properties.findByPk(propertyId);
+
+    if (!property)
+      return res.status(404).json({message:"Property not found"});
+
+    await property.setAmenities(amenityIds);
+
+    res.json({message:"Amenities linked successfully"});
+  } catch (error) {
+    console.log(error)
+    res.status(500).json({message:"Error linking amenities",error})
+  }
 };

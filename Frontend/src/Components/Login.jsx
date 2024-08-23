@@ -8,6 +8,10 @@ import { AuthContext} from "../Context/AuthContext";
 axios.defaults.withCredentials = true;
 
 function Login() {
+  useEffect(()=>{
+    window.scrollTo(0,0)
+  });
+  
   const navigate = useNavigate();
   const {login}= useContext(AuthContext);
 
